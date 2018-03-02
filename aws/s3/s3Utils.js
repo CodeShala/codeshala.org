@@ -137,7 +137,7 @@ module.exports = {
      * @param filePath
      * @param callback
      */
-    uploadFileMultiPart: function (bucketName, filePath, callback) {
+    uploadFile: function (bucketName, filePath, callback) {
         fs.readFile(filePath, function (err, fileData) {
             if (err) {
                 log.error(err);
@@ -158,9 +158,23 @@ module.exports = {
      * @param fileDate
      * @param callback
      */
-    uploadFileMultiPart: function (bucketName, filePath, fileData, callback) {
+    uploadFile: function (bucketName, filePath, fileData, callback) {
         var params = {Bucket: bucketName, Key: filePath, Body: fileData};
         module.exports.putObjectInBucket(params, function (err, response) {
+            return callback(err, response);
+        });
+    },
+
+    /**
+     * Get object from S3 bucket.
+     *
+     * @param bucketName
+     * @param key
+     * @param callback
+     */
+    getObject: function (bucketName, key, callback) {
+        var params = {Bucket: bucketName, Key: key};
+        s3.getObject(params, function(err, response) {
             return callback(err, response);
         });
     }
