@@ -23,8 +23,15 @@
   "homepage": "https://github.com/CodeShala/codeshala.org#readme",
   "dependencies": {
     "aws-sdk": "^2.205.0",
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
     "ejs": "2.5.7",
-    "express": "4.16.2",
-    "node-uuid": "^1.4.8"
+    "express": "^4.16.2",
+    "express-validate": "0.0.8",
+    "express-validation": "^1.0.2",
+    "express-validator": "^5.0.3",
+    "joi": "^13.1.2",
+    "node-uuid": "^1.4.8",
+    "uuid": "^3.2.1"
   }
 }

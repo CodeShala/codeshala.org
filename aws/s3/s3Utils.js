@@ -4,12 +4,11 @@ Utility class for uploading file in S3.
 @author chandan
 */
 
-AWS = require('aws-sdk');
-uuid = require('node-uuid');
-fs =  require('fs');
-log = require('../../log/log.js');
+const AWS = require('aws-sdk');
+const fs =  require('fs');
+const log = require('../../log/log.js');
 
-s3 = new AWS.S3();
+const s3 = new AWS.S3();
 
 module.exports = {
 
