@@ -1,0 +1,29 @@
+{
+  "name": "codeshala.org",
+  "version": "0.1.0",
+  "description": " The main website of codeshala ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "node index",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeShala/codeshala.org.git"
+  },
+  "keywords": [
+    "codeshala",
+    "website"
+  ],
+  "author": "vipinkhushu@hotmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CodeShala/codeshala.org/issues"
+  },
+  "homepage": "https://github.com/CodeShala/codeshala.org#readme",
+  "dependencies": {
+    "ejs": "2.5.7",
+    "express": "4.16.2"
+  }
+}

@@ -1,0 +1,59 @@
+body{
+	background-color: #f3f3f3;
+}
+nav{
+	background-color: #323754;
+}
+.container{
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+.codeshala-logo{
+	 width:200px;
+	 height: 40px;
+}
+.codeshala-heading{
+	height:250px;
+}
+.codeshala-heading > h1{
+	margin-top:140px;
+}
+.codeshala-course-card{
+	margin-left:40px;
+	margin-right: 40px; 
+	margin-bottom: 40px;
+}
+.codeshala-course-card > h2{
+	margin-top:20px;
+}
+.codeshala-description{
+	margin:30px;
+}
+.codeshala-company-image{
+	margin-bottom: 20px;
+}
+.codeshala-stats-card{
+	 margin:40px;
+}
+.codeshala-contact > i {
+	margin-right: 10px;
+	margin-bottom:10px;
+}
+.codeshala-social{
+	padding:30px;
+}
+.codeshala-btninfo > a{
+	margin:10px;
+	padding:10px;
+}
+.codeshala-feedbacktext{
+	font-size: 14px;
+}
+.codeshala-feedbackcard{
+	background-color: #f3f3f3;
+	border-radius: 5px;
+}
+.codeshala-feedbackimage{
+	width: 80px;
+	margin: 35px;
+}
