@@ -2,6 +2,7 @@
 [![Build Status](https://travis-ci.org/CodeShala/codeshala.org.svg?branch=master)](https://travis-ci.org/CodeShala/codeshala.org)
 [![dependencies Status](https://david-dm.org/CodeShala/codeshala.org/status.svg)](https://david-dm.org/CodeShala/codeshala.org)
 [![Maintainability](https://api.codeclimate.com/v1/badges/f37d4d4157772414cf56/maintainability)](https://codeclimate.com/github/CodeShala/codeshala.org/maintainability)
+[![Known Vulnerabilities](https://snyk.io/test/github/codeshala/codeshala.org/badge.svg?targetFile=package.json)](https://snyk.io/test/github/codeshala/codeshala.org?targetFile=package.json)
 
 [![CODESHALA](http://codeshala.org/assets/images/site_logo.png)](http://codeshala.org/assets/images/site_logo.png)
 We are community of programmers. Our community is lead by professionals who have broad experience in competitve programming and software development. Our community mentors are working at top companies and providing mentorship to candidates across different colleges.
