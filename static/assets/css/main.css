@@ -16,7 +16,7 @@ nav{
 	background: linear-gradient(#a1a1a2 , transparent);
 }
 .container{
-	margin-top: 60px;
+	margin-top: 50px;
 	margin-bottom: 60px;
 }
 .codeshala-theme{
@@ -28,15 +28,23 @@ nav{
 }
 .codeshala-heading{
 	height:250px;
+	z-index:9999;
+}
+.codeshala-banner{
+	//background-image: url('/assets/images/banners/background.png');
 }
 .codeshala-heading > h1{
-	margin-top:100px;
+	font-size:25px;
+	font-weight: 700;
+}
+.codeshala-course-heading > h1{
+	margin-top:50px;
 	font-size:2vw;
 	font-weight: 700;
 }
 .codeshala-heading > h2{
 	color: #7f7f7f;
-	font-size:1.5vw;
+	font-size:15px;
 	font-weight: 300;
 
 }
@@ -54,6 +62,55 @@ nav{
     box-shadow: 0 2px 64px 0 rgba(208,208,208,.5);
 	padding: 0px 24px;
 	position: relative;
+}
+.codeshala-course-registration-card{
+	margin-left:40px;
+	margin-right: 40px; 
+	margin-bottom: 140px;
+    -webkit-box-shadow: 0 2px 64px 0 rgba(208,208,208,.5);
+    box-shadow: 0 2px 64px 0 rgba(208,208,208,.5);
+	padding: 25px;
+}
+.codeshala-course-registration-card > h3 {
+	font-weight: 600;
+}
+.codeshala-course-registration-border{
+	border-left:4px solid black;
+}
+.codeshala-course-detail-card{
+	margin-left:40px;
+	margin-right: 40px; 
+	margin-bottom: 140px;
+	margin-top: -100px;
+	vertical-align: top;
+	will-change: transform;
+    -webkit-transition: .2s;
+    -o-transition: .2s;
+    transition: .2s;
+    -webkit-box-shadow: 0 2px 64px 0 rgba(208,208,208,.5);
+    box-shadow: 0 2px 64px 0 rgba(208,208,208,.5);
+	padding: 0px 24px;
+	position: relative;	
+  max-height: 340px;
+  position: relative;
+  overflow: hidden;
+}
+.codeshala-course-detail-card > h2{
+	margin-top: 20px;
+	font-size: 15px;
+	font-weight:bold;
+}
+.codeshala-course-detail-card > p{
+  position: absolute; 
+  bottom: 0; 
+  left: 0;
+  width: 100%; 
+  text-align: center; 
+  margin: 0; padding: 30px 0; 
+  background-image: linear-gradient(to bottom, transparent, black);
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, rgba(210, 0, 0, 0)),color-stop(1, #a1a1a2));
+  font-size:20px;
+  font-weight:600;
 }
 .codeshala-course-card:hover{
 	webkit-transform: scale(1.1);
@@ -187,6 +244,15 @@ nav{
 .codeshala-placements-container{
 	margin:30px;
 }
+.codeshala-course-description-list >li {
+	color: #7f7f7f;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 22px;
+}
+.codeshala-footer-course-finder-link{
+	color:#fff;
+}
 footer{
     background: #191919;
     text-align: center;
@@ -264,4 +330,34 @@ footer{
   right: -25px;
   top: 30px;
   transform: rotate(-45deg);
+}
+.codeshala-github-btn{
+	margin: 15px;
+	color: #fff;
+    background-color: #444;
+    border-color: rgba(0,0,0,0.2);
+	border-radius: 5px;
+    padding: 7px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+	position:relative;
+	padding-left: 44px;
+	width:350px
+}
+.codeshala-github-btn:hover{
+	background-color: #000;
+}
+.codeshala-github-btn-icon{
+	position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 32px;
+	padding: 2px;
+    line-height: 34px;
+    font-size: 1.6em;
+    text-align: center;
+    border-right: 1px solid rgba(0,0,0,0.2);
 }

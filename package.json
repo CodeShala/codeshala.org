@@ -23,13 +23,20 @@
   },
   "homepage": "https://github.com/CodeShala/codeshala.org#readme",
   "dependencies": {
+    "aws-sdk": "2.209.0",
     "connect-ensure-login": "0.1.1",
     "cookie-parser": "1.4.3",
+    "dotenv": "5.0.1",
+    "dynamodb": "1.1.1",
     "ejs": "2.5.7",
     "express": "4.16.2",
     "express-session": "1.15.6",
+    "joi": "13.1.2",
     "morgan": "1.9.0",
+    "node-ga": "0.1.1",
     "passport": "0.4.0",
-    "passport-local": "1.0.0"
+    "passport-github": "1.1.0",
+    "passport-local": "1.0.0",
+    "passport-oauth": "1.0.0"
   }
 }
