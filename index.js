@@ -8,7 +8,7 @@ var OAuth2Strategy = require('passport-oauth').OAuth2Strategy;
 var GithubStrategy = require('passport-github').Strategy;
 var dynamo = require('dynamodb');
 var Joi = require('joi');
-var aws_keys = require('./utils/aws-keys.json');
+//var aws_keys = require('./utils/aws-keys.json');
 dynamo.AWS.config.update({accessKeyId: process.env.AWS_ACCESS_ID_KEY,
  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY, 
  region: process.env.AWS_REGION
