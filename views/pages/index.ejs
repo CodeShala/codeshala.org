@@ -21,45 +21,19 @@
 	<hr>
 	<div class="container text-center" id="courses-section">
 		<div class="row mx-auto">
+			<% for(key in courses){ %>
 			<div class="card col-lg-3 codeshala-course-card">
+				<% if (courses[key].attrs.courseRegistrationStatus=="OPEN") { %>
 				<div class="ribbon ribbon-top-left"><span>Open</span></div>
-				<div class="codeshala-course-thumbnail" style="background-image:url(assets/images/course-icon/nodejs.png);background-size:cover;background-repeat: no-repeat;"></div>
-				<h2><a href="/course">Full Stack Web Development Using Node.JS</a></h2>
-				<p>12-16 Sessions<br/>The course is designed to make students understand basics of how the web works and make them develop frontend using popular frameworks like bootstrap and backend using Node.js with MongoDB database. This course adds awesome projects to your resume.</p>
-				<span class="text-center codeshala-theme codeshala-course-card-btn"><a href="/course">Explore more &amp; register <i class="fa fa-arrow-right"></i></a></span>
-			</div>
-			<div class="card col-lg-3 codeshala-course-card">
+				<% } else { %>
 				<div class="ribbon ribbon-top-left"><span>Open</span></div>
-				<div class="codeshala-course-thumbnail" style="background-image:url(assets/images/course-icon/cpp.png);background-size:contain;background-repeat: no-repeat;"></div>
-				<h2>Introduction to programing using C++</h2>
-				<p>22-25 Sessions<br/>This course will teach you how to program, with an easy to use programming language C/C++. More importantly, it will introduce you to the fundamental principles of programming and it will help you think like a software engineer.</p>
-				<span class="text-center codeshala-theme codeshala-course-card-btn"><a href="/courses/node-js">Explore more &amp; register <i class="fa fa-arrow-right"></i></a></span>
+				<% } %>
+				<div class="codeshala-course-thumbnail" style="background-image:url(assets/images/course-icon/algo.png);background-size:cover;background-repeat: no-repeat;"></div>
+				<h2><a href="/course/<%= courses[key].attrs.alias %>"><%= courses[key].attrs.name %></a></h2>
+				<p><%= courses[key].attrs.minsessions %> - <%= courses[key].attrs.maxsessions %> Sessions<br/><%= courses[key].attrs.description %></p>
+				<span class="text-center codeshala-theme codeshala-course-card-btn"><a href="/course/<%= courses[key].attrs.alias %>">Explore more &amp; register <i class="fa fa-arrow-right"></i></a></span>
 			</div>
-			<div class="card col-lg-3 codeshala-course-card">
-				<div class="ribbon ribbon-top-left"><span>Open</span></div>
-				<div class="codeshala-course-thumbnail" style="background-image:url(assets/images/course-icon/algo.png)"></div>
-				<h2>Data Structures &amp; Algorithms 1</h2>
-				<p>22-25 Sessions<br/>This course is mix of algorithms and data-structures. You are going to learn basic algorithms and implementation of data-structures. Teaching how to implement an algorithm and how to choose the right set of data-structures to solve the question is the primary goal of this course. </p>
-				<span class="text-center codeshala-theme codeshala-course-card-btn"><a href="/courses/node-js">Explore more &amp; register <i class="fa fa-arrow-right"></i></a></span>
-			</div>
-			<div class="card col-lg-3 codeshala-course-card">
-				<div class="codeshala-course-thumbnail" style="background-image:url(assets/images/course-icon/algo.png)"></div>
-				<h2>Data Structures &amp; Algorithms 2</h2>
-				<p>12-16 Sessions<br/>This course provides a comprehensive explanation of different types of graph, graph algorithms, strings algorithms, trie, segment tree, dynamic programming etc.  Throughout the course a step by step approach is followed to make you understand different algorithms. </p>
-				<span class="text-center codeshala-theme codeshala-course-card-btn"><a href="/courses/node-js">Explore more  <i class="fa fa-arrow-right"></i></a></span>
-			</div>
-			<div class="card col-lg-3 codeshala-course-card">
-				<div class="codeshala-course-thumbnail" style="background-image:url(assets/images/course-icon/placement.png)"></div>
-				<h2>Coding Interview Prepration</h2>
-				<p>This course is beneficial for the candidates who are going to participate in campus placements. Course includes all the topics algorithms, data structures, Object-Oriented Programming, OS, DB and Networking which are essential components of a technical interview of different companies.</p>
-				<span class="text-center codeshala-theme codeshala-course-card-btn"><a href="/courses/node-js">Explore more  <i class="fa fa-arrow-right"></i></a></span>
-			</div>
-			<!--<div class="card col-lg-3 codeshala-course-card">
-				<div class="codeshala-course-thumbnail" style="background-image:url(assets/images/course-icon/android.jpg)"></div>
-				<h2>Android Development</h2>
-				<p>12-16 Sessions<br/>The course is designed to make students understand basics of how the web works and make them develop frontend using popular frameworks like bootstrap and backend using Node.js with MongoDB database</p>
-				<span class="text-center codeshala-theme codeshala-course-card-btn"><a href="/courses/node-js">Explore more  <i class="fa fa-arrow-right"></i></a></span>
-			</div>-->
+			<% } %>
 			<!-- Insert new course above this line-->
 		</div>
 	</div>

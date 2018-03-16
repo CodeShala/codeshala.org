@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<title>Full Stack Web Development Using Node.JS | Codeshala | Get Better At Programing By Joining The Best programing courses in Delhi NCR</title> <% include ../partials/header %>
+	<title><%= course.name %> | Codeshala | Get Better At Programing By Joining The Best programing courses in Delhi NCR</title> <% include ../partials/header %>
 	<% include ../partials/metadata %>
 </head>
 <body>
@@ -9,12 +9,12 @@
 	<div class="container-fluid codeshala-banner">
 		<div class="container text-center codeshala-course-heading">
 			<h1>
-				<img src="assets/images/course-icon/nodejs.png" height="100px">
-				Full Stack Web Development Using Node.JS<br/>				
-				<span class="text-center codeshala-theme codeshala-course-card-btn"><a href="/courses/node-js">Register Now <i class="fa fa-arrow-right"></i></a></span>
+				<img src="/assets/images/course-icon/algo.png" height="100px">
+				<%= course.name %><br/>				
+				<span class="text-center codeshala-theme codeshala-course-card-btn"><a href="/course/<% course.alias %>">Register Now <i class="fa fa-arrow-right"></i></a></span>
 			</h1>
 			<br/>
-			<p>The course is designed to make students understand basics of how the web works and make them develop frontend using popular frameworks like bootstrap and backend using Node.js with MongoDB database. This course involves developing projects which will transform a beginner in development to a professional developer and have their resume outshine others.</p>
+			<p><%= course.description %></p>
 			<br/><br/><br/>
 		</div>
 	</div>
@@ -56,35 +56,18 @@
 		<div class="row mx-auto">
 				<div class="card col-lg-5 codeshala-course-card">
 					<h2>Duration</h2>
-					<p>12-16 Sessions</p>
+					<p><%= course.minsessions %> - <%= course.maxsessions %> Sessions</p>
 					<h2>Fees</h2>
-					<p>INR 5,000/-</p>
+					<p>INR <%= course.fees %>/-</p>
 					<h2>Number of seats</h2>
-					<p>20</p>
-					<h2>Seats Left</h2>
-					<p>19</p>
+					<p><%= course.seats %></p>
 				</div>
 				<div class="card col-lg-5 codeshala-course-detail-card sidebar-box">
 
 						<h2>Course Curriculum</h2>
 
 						<ul class="codeshala-course-description-list">
-						<li>HTML5/CSS3 & Bootstrap - Responsive design</li>
-						<li>Javascript basics, Jquery & Ajax</li>
-						<li>Introduction to Node.js & installing Node.js</li>
-						<li>Node Package Manager (NPM), Installing & using all basic modules</li>
-						<li>Node.js Express</li>
-						<li>Node.js Webpage Rendering</li>
-						<li>Node.js MongoDB</li>
-						<li>Node.js Socket.io</li>
-						<li>Using GIT and Github, Registering your own website domain & Hosting static websites on Github</li> 
-						<li>Deploying on Heroku/AWS/DigitalOcean </li>
-						</ul>
-						<h2>Course Projects</h2>
-						<ul class="codeshala-course-description-list">
-						<li>Developing URL Shortener using Node.js, MongoDB</li>
-						<li>Developing a Blogging website with REST API architecture using Node.js and Facebook’s OG API for user authentication.</li>
-						<li>Developing Chat system using sockets</li>
+<%= course.courseCurriculum %>	
 						</ul>
 					<p class="readmore"><a href="#" class="button">Read More</a></p>
 				</div>

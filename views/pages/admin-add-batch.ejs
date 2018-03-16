@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Add Batch | Admin | Codeshala | Get Better At Programing By Joining The Best programing courses in Delhi NCR</title> 
+	<% include ../partials/header %>
+	<% include ../partials/metadata %>
+</head>
+<body>
+	<% include ../partials/nav %>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3">
+				<% include ../partials/admin-menu %>
+			</div>
+			<div class="col-lg-9">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="/admin">Admin Home</a></li>
+						<li class="breadcrumb-item"><a href="/admin/batchs/add">Add Batch</a></li>
+					</ol>
+				</nav>
+				<br/>
+				<div class="card">
+					<div class="card-header">
+						Add New Course
+					</div>
+					<div class="card-body">
+						<form method="post" action="/admin/batchs/add">
+							<div class="form-group">
+								<label for="formGroupExampleInput">Course Name</label>
+								<input type="text" name="name" class="form-control" id="formGroupExampleInput" placeholder="e.g. Full Stack Web Development Using Node.JS">
+							</div>
+							<div class="form-group">
+								<label for="formGroupExampleInput2">Minimum Sessions</label>
+								<input type="text" name="minsessions" class="form-control" id="formGroupExampleInput2" placeholder="e.g. 16">
+							</div>
+							<div class="form-group">
+								<label for="formGroupExampleInput2">Maximum Sessions</label>
+								<input type="text" name="maxsessions" class="form-control" id="formGroupExampleInput2" placeholder="e.g. 21">
+							</div>
+							<div class="form-group">
+								<label for="formGroupExampleInput2">Course Fees</label>
+								<input type="text" name="fees" class="form-control" id="formGroupExampleInput2" placeholder="e.g. INR 8000">
+							</div>
+							<div class="form-group">
+								<label for="formGroupExampleInput2">Number Of Seats</label>
+								<input type="text" name="seats" class="form-control" id="formGroupExampleInput2" placeholder="e.g. 20">
+							</div>
+							<div class="form-group">
+								<label for="formGroupExampleInput2">Short Description (40-45 Words)</label>
+								<input type="text" name="description" class="form-control" id="formGroupExampleInput2" placeholder="Short Description">
+							</div>
+							<div class="form-group">
+								<label for="formGroupExampleInput">Course Curriculum (Use &lt;li&gt; Tags)</label>
+								<textarea class="form-control" name="course-curriculum" id="formGroupExampleInput" placeholder="Course Curriculum"></textarea>
+							</div>
+							<div class="form-group">
+								<label for="formGroupExampleInput">Course Projects (Use &lt;li&gt; Tags)</label>
+								<textarea class="form-control" name="course-projects" id="formGroupExampleInput" placeholder="Course Projects"></textarea>
+							</div>
+							<div class="form-group">
+							<label for="formGroupExampleInput2">Course Scope</label><br/>
+							<select class="custom-select" name="course-scope">
+								<option value="OPEN">Open For All To Register</option>
+								<option value="LINK">Open For Ones With Link</option>
+								<option value="PRIVATE">Open For Selected People</option>
+							</select>
+							</div>
+							<div class="form-group">
+							<label for="formGroupExampleInput2">Registration Status</label><br/>
+							<select class="custom-select" name="course-registration-status">
+								<option value="OPEN">Open For Registration</option>
+								<option value="CLOSED">Closed For Registration</option>
+							</select>
+							</div>
+							
+							<div class="form-group">
+								<label for="formGroupExampleInput2">Course Alias</label>
+								<input type="text" name="alias" class="form-control" id="formGroupExampleInput2" placeholder="Course Alias">
+							</div>
+							<input type="submit" class="btn btn-primary" value="Add Course">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% include ../partials/footer %>
+</body>
+
+<% include ../partials/footer-scripts %>
+
+</html>

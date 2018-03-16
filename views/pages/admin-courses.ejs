@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<title>Codeshala | Get Better At Programing By Joining The Best programing courses in Delhi NCR</title> <% include ../partials/header %>
+	<title>Courses | Admin | Codeshala | Get Better At Programing By Joining The Best programing courses in Delhi NCR</title> 
+	<% include ../partials/header %>
 	<% include ../partials/metadata %>
 </head>
 <body>
@@ -9,44 +10,46 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-3">
-				<ul class="list-group">
-					<li class="list-group-item active">Cras justo odio</li>
-					<li class="list-group-item">Dapibus ac facilisis in</li>
-					<li class="list-group-item">Morbi leo risus</li>
-					<li class="list-group-item">Porta ac consectetur ac</li>
-					<li class="list-group-item">Vestibulum at eros</li>
-				</ul>
+				<% include ../partials/admin-menu %>
 			</div>
 			<div class="col-lg-9">
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="/admin">Admin Home</a></li>
-						<li class="breadcrumb-item">Configure Courses</li>
+						<li class="breadcrumb-item"><a href="/admin/courses">View All Courses</a></li>
 					</ol>
 				</nav>
 				<br/>
 				<div class="card">
 					<div class="card-header">
-						Add New Course
+						View All Courses
 					</div>
 					<div class="card-body">
-						<form>
-							<div class="form-group">
-								<label for="formGroupExampleInput">Example label</label>
-								<input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+						<div class="row">
+							<% for(key in courses){ %>
+							<div class="card border-info lg-6" style="max-width: 18rem;margin:10px;">
+								<div class="card-header"><%= courses[key].attrs.name %></div>
+								<div class="card-body text-info">
+									<% if (courses[key].attrs.courseRegistrationStatus=="OPEN") { %>
+									<span>Open</span>
+									<% } else { %>
+									<span>Open</span>
+									<% } %> | 
+									<%= courses[key].attrs.minsessions %> - <%= courses[key].attrs.maxsessions %> Sessions<br/>
+									
+								</div>
 							</div>
-							<div class="form-group">
-								<label for="formGroupExampleInput2">Another label</label>
-								<input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
-							</div>
-						</form>
-						<a href="#" class="btn btn-primary">Go somewhere</a>
+							<% } %>
+
+							
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<% include ../partials/footer %>
+</div>
+<% include ../partials/footer %>
 </body>
 
 <% include ../partials/footer-scripts %>
