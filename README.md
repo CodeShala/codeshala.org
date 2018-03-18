@@ -10,6 +10,7 @@ We are community of programmers. Our community is lead by professionals who have
 
 ### Hosting Server
 
-* Production Server : [codeshala.org](https://codeshala.org)
+* Production Server (Master Branch) : [codeshala.org](http://codeshala.org)
+* Staging Server (Develop Branch) : [codeshala.herokuapp.com](https://codeshala.herokuapp.com)
 
 
