@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Feedbacks | Admin | Codeshala | Get Better At Programing By Joining The Best programing courses in Delhi
+        NCR</title>
+    <% include ../partials/header %>
+    <% include ../partials/metadata %>
+</head>
+<body>
+<% include ../partials/nav %>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3">
+            <% include ../partials/admin-menu %>
+        </div>
+        <div class="col-lg-9">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/admin">Admin Home</a></li>
+                    <li class="breadcrumb-item"><a href="/admin/feedbacks">Feedbacks</a></li>
+                </ol>
+            </nav>
+            <br/>
+            <div class="card">
+                <div class="card-header">
+                    Feedbacks
+                </div>
+                <div class="card-body"><p>Create a new feedback</p>
+                    <form action="/admin/feedbacks/new" method="post">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <input type="text" placeholder="First name" id="first_name" name="first_name"
+                                           class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <input type="text" placeholder="Last name" id="last_name" name="last_name"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <input type="text" placeholder="Intern At" id="intern_at" name="intern_at"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <input type="text" placeholder="Placed At" id="placed_at" name="placed_at"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <textarea placeholder="Feedback" id="feedback" name="feedback" class="form-control"
+                                              required></textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <button class="btn btn-primary" type="submit">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="row">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Placed At</th>
+                                    <th scope="col">Intern At</th>
+                                    <th scope="col">Feedback</th>
+                                    <th scope="col">Display on home page</th>
+                                    <th scope="col">Display on course page</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <% for(index in feedbacks){ %>
+                                <tr>
+                                    <th scope="row"><%= index %></th>
+                                    <td><%= feedbacks[index].first_name %></td>
+                                    <td><%= feedbacks[index].last_name %></td>
+                                    <td><%= feedbacks[index].placed_at %></td>
+                                    <td><%= feedbacks[index].intern_at %></td>
+                                    <td><%= feedbacks[index].feedback %></td>
+                                    <td>
+                                        <button class="btn btn-primary" type="submit">GO</button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-primary" type="submit">GO</button>
+                                    </td>
+                                </tr>
+                                <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<% include ../partials/footer %>
+</body>
+
+<% include ../partials/footer-scripts %>
+
+</html>

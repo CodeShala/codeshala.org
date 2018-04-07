@@ -8,6 +8,17 @@
 [![CODESHALA](http://codeshala.org/assets/images/site_logo.png)](http://codeshala.org/assets/images/site_logo.png)
 We are community of programmers. Our community is lead by professionals who have broad experience in competitve programming and software development. Our community mentors are working at top companies and providing mentorship to candidates across different colleges.
 
+
+### Environment Details
+
+| Environment Variables | Description |
+| ------ | ------ |
+| PORT | Port number on which server listens e.g. 3000 |
+| MLAB_DB_URI | MongoDB URI |
+| ADMIN_USERNAME | Username for admin access routes |
+| ADMIN_PASSWORD | Password for admin access routes |
+
+
 ### Hosting Server
 
 * Production Server (Master Branch) : [codeshala.org](http://codeshala.org)

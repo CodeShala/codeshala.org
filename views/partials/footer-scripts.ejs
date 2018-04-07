@@ -1,6 +1,105 @@
+<!-- Modal -->
+<div class="modal fade" id="CourseChooserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body" style="padding:10px;">
+                <h5 class="modal-title" id="exampleModalLongTitle">Welcome to course chooser</h5>
+                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>-->
+                <small>This tool will recommend you the best suitable course you should opt for</small>
+                <br/><br/>
+                <div id="cc-step1">
+                    <p><strong>Please select all the languages you have are comfortable working with</strong>
+                        <br/><br/>
+                        <input type="checkbox" id="lang-0"> <label>I'm a beginner, show me how to get started.</label>
+                        <br/>
+                        <input type="checkbox" id="lang-1"> <label>C</label> <br/>
+                        <input type="checkbox" id="lang-2" id="lang-0"> <label>C++</label> <br/>
+                        <input type="checkbox" id="lang-3"> <label>Java</label> <br/>
+                        <input type="checkbox" id="lang-4"> <label>Python</label> <br/>
+                        <input type="checkbox" id="lang-5"> <label>Ruby</label> <br/>
+                        <input type="checkbox" id="lang-6"> <label>HTML</label> <br/>
+                        <input type="checkbox" id="lang-7" id="lang-0"> <label>CSS</label> <br/>
+                        <input type="checkbox" id="lang-8"> <label>JavaScript</label> <br/>
+                    </p>
+                    <center>
+                        <button class="btn btn-primary" id="cc-goToStep2">Next (1/3)</button>
+                    </center>
+                </div>
+                <div id="cc-step2" style="display:none;">
+                    <p><strong>Please select all the data structures you have are comfortable working with</strong>
+                        <br/><br/>
+                        <input type="checkbox" id="ds-0"> <label>I'm a beginner, i dont know what data structure
+                            means.</label> <br/>
+                        <input type="checkbox" id="ds-1"> <label>Array</label> <br/>
+                        <input type="checkbox" id="ds-2"> <label>Linked List</label> <br/>
+                        <input type="checkbox" id="ds-3"> <label>Stack/Queue</label> <br/>
+                        <input type="checkbox" id="ds-4"> <label>Tree</label> <br/>
+                        <input type="checkbox" id="ds-5"> <label>Graph</label> <br/>
+                        <input type="checkbox" id="ds-6"> <label>Advanced DS</label> <br/>
+                    </p>
+                    <center>
+                        <button class="btn btn-primary" id="cc-goToStep3">Next (2/3)</button>
+                    </center>
+                </div>
+                <div id="cc-step3" style="display:none;">
+                    <p><strong>Please select all the coursed you have completed at codeshala or are currently enrolled
+                            at codeshala</strong>
+                        <br/><br/>
+                        <input type="checkbox" id="course-0"> <label>No, i have never taken a course at
+                            codeshala.</label> <br/>
+                        <input type="checkbox" id="course-1"> <label>Full Stack Web Development Using Node.JS</label>
+                        <br/>
+                        <input type="checkbox" id="course-2"> <label>Introduction to programing using C++</label> <br/>
+                        <input type="checkbox" id="course-3"> <label>Data Structures & Algorithms 1</label> <br/>
+                        <input type="checkbox" id="course-4"> <label>Coding Interview Prepration</label> <br/>
+                        <input type="checkbox" id="course-5"> <label>Data Structures & Algorithms 2</label> <br/>
+                    </p>
+                    <center>
+                        <button class="btn btn-primary" id="cc-analyze">Analyze</button>
+                    </center>
+                </div>
+                <div id="cc-result">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        $('#cc-goToStep2').click(function () {
+            $('#cc-step1').hide();
+            $('#cc-step2').show();
+        });
+        $('#cc-goToStep3').click(function () {
+            $('#cc-step2').hide();
+            $('#cc-step3').show();
+        });
+        $('#cc-analyze').click(function () {
+            $('#cc-step3').hide();
+            var recommendedCourse;
+            if ($('#course-0').prop("checked") == true) {
+                recommendedCourse = "Introduction to programing using C++";
+            } else if ($('#course-1').prop("checked") == true || $('#course-2').prop("checked") == true) {
+                recommendedCourse = "Data Structures & Algorithms 1/2"
+            } else if ($('#course-3').prop("checked") == true || $('#course-4').prop("checked") == true) {
+                recommendedCourse = "Data Structures & Algorithms 2"
+            } else if ($('#course-5').prop("checked") == true) {
+                recommendedCourse = "Coding Interview Prepration";
+            }
+            $('#cc-result').html('Course analyser advises you to join <b>' + recommendedCourse + "</b> course.")
+        });
+    })
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
 
 <!--<script src="https://use.fontawesome.com/bc4369196c.js"></script>-->
 
@@ -8,9 +107,13 @@
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115351307-1"></script>
 <script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
 
-	gtag('config', 'UA-115351307-1');
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'UA-115351307-1');
 </script>

@@ -1,187 +1,184 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<title>Codeshala | Get Better At Programing By Joining The Best programing courses in Delhi NCR</title> <% include ../partials/header %>
-	<% include ../partials/metadata %>
+    <title>Codeshala | Get Better At Programing By Joining The Best programing courses in Delhi NCR</title>
+    <% include ../partials/header %>
+    <% include ../partials/metadata %>
 </head>
 <body>
-	<% include ../partials/nav %>
-	<div class="container text-center codeshala-heading">
-		<h1><span style="color:#fd8900">CODE</span><span style="color:#0289fe">SHALA</span><br/>GET BETTER AT PROGRAMING</h1>
-		<h2>
-			We are community of programmers. Our community is lead by professionals who have broad experience in competitve programming and software development. Our community mentors are working at top companies and providing mentorship to candidates across different colleges. We provide learning courses to make you a better programmer.
-		</h2>
-		<span class="text-center codeshala-theme codeshala-course-card-btn">
-			<a href="/tools/course-chooser">
+<% include ../partials/nav %>
+<div class="container text-center codeshala-heading">
+    <h1><span style="color:#fd8900">CODE</span><span style="color:#0289fe">SHALA</span><br/>GET BETTER AT PROGRAMING
+    </h1>
+    <h2>
+        We are community of programmers. Our community is lead by professionals who have broad experience in competitve
+        programming and software development. Our community mentors are working at top companies and providing
+        mentorship to candidates across different colleges. We provide learning courses to make you a better programmer.
+    </h2>
+    <span class="text-center codeshala-theme codeshala-course-card-btn">
+			<a href="/tools/course-chooser" data-toggle="modal" data-target="#CourseChooserModal">
 				<small>Not able to decide which course to join?</small>
 				<br/>Try our course chooser  <i class="fa fa-arrow-right"></i>
 			</a>
 		</span>
-	</div>
-	<hr>
-	<div class="container text-center" id="courses-section">
-		<div class="row mx-auto">
-			<% for(key in courses){ %>
-			<div class="card col-lg-3 codeshala-course-card">
-				<% if (courses[key].attrs.courseRegistrationStatus=="OPEN") { %>
-				<div class="ribbon ribbon-top-left"><span>Open</span></div>
-				<% } else { %>
-				<div class="ribbon ribbon-top-left"><span>Open</span></div>
-				<% } %>
-				<div class="codeshala-course-thumbnail" style="background-image:url(assets/images/course-icon/algo.png);background-size:cover;background-repeat: no-repeat;"></div>
-				<h2><a href="/course/<%= courses[key].attrs.alias %>"><%= courses[key].attrs.name %></a></h2>
-				<p><%= courses[key].attrs.minsessions %> - <%= courses[key].attrs.maxsessions %> Sessions<br/><%= courses[key].attrs.description %></p>
-				<span class="text-center codeshala-theme codeshala-course-card-btn"><a href="/course/<%= courses[key].attrs.alias %>">Explore more &amp; register <i class="fa fa-arrow-right"></i></a></span>
-			</div>
-			<% } %>
-			<!-- Insert new course above this line-->
-		</div>
-	</div>
-	<div class="container text-center"  id="stats">
-		<h3 class=" text-dark text-left font-weight-bold">
-			Stats that make us proud
-		</h3>
-		<div class="row mx-auto text-center float-center">
-			<div class="codeshala-stats-card mx-auto">
-				<span class="codeshala-stats-card-count">300+</span><br/><br/><span>Students Trained</span>
-			</div>
-			<div class="codeshala-stats-card  mx-auto">
-				<span class="codeshala-stats-card-count">300+</span><br/><br/><span>Placements</span>
-			</div>
-			<div class="codeshala-stats-card  mx-auto">
-				<span class="codeshala-stats-card-count">300+</span><br/><br/><span>Hours Of Teaching</span>
-			</div>
-			<div class="codeshala-stats-card  mx-auto">
-				<span class="codeshala-stats-card-count">300+</span><br/><br/><span>Projects</span>
-			</div>
-		</div>
-	</div>
-	<div class="container text-center"  id="projects">
-		<h3 class=" text-dark text-left font-weight-bold">
-			Projects developed by our geeks 
-		</h3>
-		<div class="row mx-auto" style="position:relative">
-			<div class="card col-lg-3 codeshala-projects-card">
-				<div class="codeshala-projects-thumbnail" style="background-image:url(assets/images/projects/doodle-pen.png)"></div>
-				<h2 class="codeshala-projects-title">Doodle Pen</h2>
-				<p class="codeshala-projects-description">By Paras & Aarti<br/>A code editor IDE for Web developers. Supports HTML, CSS And JavaScript</p>
-				<span class="text-center codeshala-theme codeshala-course-card-btn"><a href="/courses/node-js">View Demo  <i class="fa fa-arrow-right"></i></a></span>
-			</div>
-			<div class="card col-lg-3 codeshala-projects-card">
-				<div class="codeshala-projects-thumbnail" style="background-image:url(assets/images/projects/doodle-pen.png)"></div>
-				<h2 class="codeshala-projects-title">Doodle Pen</h2>
-				<p class="codeshala-projects-description">By Paras & Aarti<br/>A code editor IDE for Web developers. Supports HTML, CSS And JavaScript</p>
-				<span class="text-center codeshala-theme codeshala-course-card-btn"><a href="/courses/node-js">View Demo  <i class="fa fa-arrow-right"></i></a></span>
-			</div>
-			<div class="card col-lg-3 codeshala-projects-card">
-				<div class="codeshala-projects-thumbnail" style="background-image:url(assets/images/projects/doodle-pen.png)"></div>
-				<h2 class="codeshala-projects-title">Doodle Pen</h2>
-				<p class="codeshala-projects-description">By Paras & Aarti<br/>A code editor IDE for Web developers. Supports HTML, CSS And JavaScript</p>
-				<span class="text-center codeshala-theme codeshala-course-card-btn"><a href="/courses/node-js">View Demo  <i class="fa fa-arrow-right"></i></a></span>
-			</div>
-			<div class="codeshala-arrow"><a href="/projects">View all projects <i class="fa fa-arrow-right"></i></a></div>
-		</div>
-	</div>	
-	<div class="container"  id="feedbacks">
-		<h3 class="text-dark text-left font-weight-bold">
-			Feedbacks Of Our Students
-		</h3>
-		<div class="row">
-			<div class="card col-lg-12 codeshala-feedbacks-card">
-				<div class="row">
-					<div class="col-lg-2">
-						<img src="assets/images/feedbacks/sample.jpg" height="150px" width="150px">
-					</div>
-					<div class="col-lg-10">
-						<h2 class="codeshala-feedbacks-title">Jatin Bansal </h2>
-						<p class="codeshala-feedbacks-description">Placed at Amazon<br/>If i want to give credits to anyone after my parents, then it is codeshala. Codeshala provided me with everything to become a better programmer. I was just a rock, codeshala made me gold. Almost every question that i encountered in Amazon interview was in the codeshala assignments . I just want to thank Chandan sir for his contribution and guidance and for being the best mentor any student can get. No doubt codeshala is the best place to learn. </p>
-					</div>
-				</div>
-			</div>
-			<div class="card col-lg-12 codeshala-feedbacks-card">
-				<div class="row">
-					<div class="col-lg-2">
-						<img src="assets/images/feedbacks/sample.jpg" height="150px" width="150px">
-					</div>
-					<div class="col-lg-10">
-						<h2 class="codeshala-feedbacks-title">Jatin Bansal </h2>
-						<p class="codeshala-feedbacks-description">Placed at Amazon<br/>If i want to give credits to anyone after my parents, then it is codeshala. Codeshala provided me with everything to become a better programmer. I was just a rock, codeshala made me gold. Almost every question that i encountered in Amazon interview was in the codeshala assignments . I just want to thank Chandan sir for his contribution and guidance and for being the best mentor any student can get. No doubt codeshala is the best place to learn. </p>
-					</div>
-				</div>
-			</div>
-			<div class="card col-lg-12 codeshala-feedbacks-card">
-				<div class="row">
-					<div class="col-lg-2">
-						<img src="assets/images/feedbacks/sample.jpg" height="150px" width="150px">
-					</div>
-					<div class="col-lg-10">
-						<h2 class="codeshala-feedbacks-title">Jatin Bansal </h2>
-						<p class="codeshala-feedbacks-description">Placed at Amazon<br/>If i want to give credits to anyone after my parents, then it is codeshala. Codeshala provided me with everything to become a better programmer. I was just a rock, codeshala made me gold. Almost every question that i encountered in Amazon interview was in the codeshala assignments . I just want to thank Chandan sir for his contribution and guidance and for being the best mentor any student can get. No doubt codeshala is the best place to learn. </p>
-					</div>
-				</div>
-			</div>
+</div>
+<hr>
+<div class="container text-center" id="courses-section">
+    <div class="row mx-auto">
+        <% for(key in courses){ %>
+        <div class="card col-lg-3 codeshala-course-card">
 
+            <% for(index in batch){
+            if(batch[index].course_alias === courses[key].alias){ %>
+            <div class="ribbon ribbon-top-left"><span>Open</span></div>
+            <% break;}
+            } %>
 
-		</div>
-
-	</div>	
-	<div class="container-fluid codeshala-placements" id="placements">
-		<div class="container">
-			<h3 class="text-light text-left font-weight-bold">
-				Placements
-			</h3>
-			<p class="text-light"><br/>We've achieved 100+ internship and job offers so far. Our community members placed at top companies like:</p><br/>
-			<div class="row mx-auto">
-				<div class="col-lg-3 mx-auto">
-					<img  src="assets/images/amazon.png" alt="Amazon" class="img-fluid codeshala-company-image">
-				</div>
-				<div class="col-lg-3 mx-auto">
-					<img  src="assets/images/samsung.png" alt="Samsung" class="img-fluid codeshala-company-image">
-				</div>
-				<div class="col-lg-3 mx-auto">
-					<img  src="assets/images/mediatek.png" alt="Mediatek" class="img-fluid codeshala-company-image">
-				</div>
-				<div class="col-lg-3 mx-auto">
-					<img  src="assets/images/sprinklr.png" alt="Sprinklr" class="img-fluid codeshala-company-image">
-				</div>
-				<div class="col-lg-3 mx-auto">
-					<img  src="assets/images/adobe.png" alt="Adobe" class="img-fluid codeshala-company-image">
-				</div>
-				<div class="col-lg-3 mx-auto">
-					<img  src="assets/images/opera.png" alt="Opera" class="img-fluid codeshala-company-image">
-				</div>
-				<div class="col-lg-3 mx-auto">
-					<img  src="assets/images/sapient.png" alt="Sapient" class="img-fluid codeshala-company-image">
-				</div>
-				<div class="col-lg-3 mx-auto">
-					<img  src="assets/images/squadrun.png" alt="Squadrun" class="img-fluid codeshala-company-image">
-				</div>
-				<div class="col-lg-3 mx-auto">
-					<img  src="assets/images/smartprix.png" alt="Smartprix" class="img-fluid codeshala-company-image">
-				</div>
-				<div class="col-lg-3 mx-auto">
-					<img  src="assets/images/st.png" alt="ST" class="img-fluid codeshala-company-image">
-				</div>
-				<div class="col-lg-3 mx-auto">
-					<img  src="assets/images/magicpin.png" alt="MagicPin" class="img-fluid codeshala-company-image">
-				</div>
-				<div class="col-lg-3 mx-auto">
-					<img  src="assets/images/tcs.png" alt="TCS" class="img-fluid codeshala-company-image">
-				</div>
-				<div class="col-lg-3 mx-auto">
-					<img  src="assets/images/daffodil.png" alt="Daffodil" class="img-fluid codeshala-company-image">
-				</div>
-				<div class="col-lg-3 mx-auto">
-					<img  src="assets/images/capegemini.png" alt="Capegemini" class="img-fluid codeshala-company-image">
-				</div>
-				<div class="col-lg-3 mx-auto">
-					<img  src="assets/images/libsys.png" alt="Libsys" class="img-fluid codeshala-company-image">
-				</div>
-				<!--Add new logos above this line-->
-			</div>
-		</div>
-	</div>
-	<% include ../partials/footer %>
+            <div class="codeshala-course-thumbnail"
+                 style="background-image:url(/assets/images/course-icon/algo.png);background-size:cover;background-repeat: no-repeat;"></div>
+            <h2><a href="/course/<%= courses[key].alias %>"><%= courses[key].name %></a></h2>
+            <p><%= courses[key].minsessions %> - <%= courses[key].maxsessions %>
+                Sessions<br/><%= courses[key].description %></p>
+            <span class="text-center codeshala-theme codeshala-course-card-btn"><a
+                        href="/course/<%= courses[key].alias %>">Explore more &amp; register <i
+                            class="fa fa-arrow-right"></i></a></span>
+        </div>
+        <% } %>
+        <!-- Insert new course above this line-->
+    </div>
+</div>
+<div class="container text-center" id="stats">
+    <h3 class=" text-dark text-left font-weight-bold">
+        Stats that make us proud
+    </h3>
+    <div class="row mx-auto text-center float-center">
+        <div class="codeshala-stats-card mx-auto">
+            <span class="codeshala-stats-card-count">300+</span><br/><br/><span>Students Trained</span>
+        </div>
+        <div class="codeshala-stats-card  mx-auto">
+            <span class="codeshala-stats-card-count">200+</span><br/><br/><span>Placements</span>
+        </div>
+        <div class="codeshala-stats-card  mx-auto">
+            <span class="codeshala-stats-card-count">1000+</span><br/><br/><span>Hours Of Teaching</span>
+        </div>
+        <div class="codeshala-stats-card  mx-auto">
+            <span class="codeshala-stats-card-count">10+</span><br/><br/><span>Projects</span>
+        </div>
+    </div>
+</div>
+<div class="container text-center" id="projects">
+    <h3 class=" text-dark text-left font-weight-bold">
+        Projects developed by our geeks
+    </h3>
+    <div class="row mx-auto" style="position:relative">
+        <div class="card col-lg-3 codeshala-projects-card">
+            <div class="codeshala-projects-thumbnail"
+                 style="background-image:url(/assets/images/projects/doodle-pen.png)"></div>
+            <h2 class="codeshala-projects-title">Doodle Pen</h2>
+            <p class="codeshala-projects-description">A code editor IDE for Web developers. Supports HTML, CSS And
+                JavaScript</p>
+            <span class="text-center codeshala-theme codeshala-course-card-btn"><a
+                        href="https://doodlepen.herokuapp.com">View Demo  <i class="fa fa-arrow-right"></i></a></span>
+        </div>
+        <div class="card col-lg-3 codeshala-projects-card">
+            <div class="codeshala-projects-thumbnail"
+                 style="background-image:url(/assets/images/projects/dock_url.png)"></div>
+            <h2 class="codeshala-projects-title">Dock URL</h2>
+            <p class="codeshala-projects-description">A short URL Website</p>
+            <span class="text-center codeshala-theme codeshala-course-card-btn"><a href="https://dockurl.herokuapp.com">View Demo  <i
+                            class="fa fa-arrow-right"></i></a></span>
+        </div>
+        <!--
+            <div class="codeshala-arrow"><a href="/projects">View all projects <i class="fa fa-arrow-right"></i></a></div>-->
+    </div>
+</div>
+<div class="container" id="feedbacks">
+    <h3 class="text-dark text-left font-weight-bold">
+        Course Feedbacks By Our Students
+    </h3>
+    <div class="row">
+        <% for(index in feedbacks){ %>
+        <div class="card col-lg-12 codeshala-feedbacks-card">
+            <div class="row">
+                <div class="col-lg-2">
+                    <img src="/assets/images/feedbacks/sample.jpg" height="150px" width="150px">
+                </div>
+                <div class="col-lg-10">
+                    <h2 class="codeshala-feedbacks-title"><%= feedbacks[index].first_name %>
+                        &nbsp;<%= feedbacks[index].last_name %> </h2>
+                    <p class="codeshala-feedbacks-description">
+                        <% if(feedbacks[index].intern_at){ %>
+                        Intern at <%= feedbacks[index].intern_at %>
+                        <% } if(feedbacks[index].placed_at){ %>
+                        | Placed at <%= feedbacks[index].placed_at %>
+                        <% } %>
+                        <br/>
+                        <%= feedbacks[index].feedback %>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <% } %>
+    </div>
+</div>
+<div class="container-fluid codeshala-placements" id="placements">
+    <div class="container">
+        <h3 class="text-light text-left font-weight-bold">
+            Placements
+        </h3>
+        <p class="text-light"><br/>We've achieved 100+ internship and job offers so far. Our community members placed at
+            top companies like:</p><br/>
+        <div class="row mx-auto">
+            <div class="col-lg-3 mx-auto">
+                <img src="assets/images/amazon.png" alt="Amazon" class="img-fluid codeshala-company-image">
+            </div>
+            <div class="col-lg-3 mx-auto">
+                <img src="assets/images/samsung.png" alt="Samsung" class="img-fluid codeshala-company-image">
+            </div>
+            <div class="col-lg-3 mx-auto">
+                <img src="assets/images/mediatek.png" alt="Mediatek" class="img-fluid codeshala-company-image">
+            </div>
+            <div class="col-lg-3 mx-auto">
+                <img src="assets/images/sprinklr.png" alt="Sprinklr" class="img-fluid codeshala-company-image">
+            </div>
+            <div class="col-lg-3 mx-auto">
+                <img src="assets/images/adobe.png" alt="Adobe" class="img-fluid codeshala-company-image">
+            </div>
+            <div class="col-lg-3 mx-auto">
+                <img src="assets/images/opera.png" alt="Opera" class="img-fluid codeshala-company-image">
+            </div>
+            <div class="col-lg-3 mx-auto">
+                <img src="assets/images/sapient.png" alt="Sapient" class="img-fluid codeshala-company-image">
+            </div>
+            <div class="col-lg-3 mx-auto">
+                <img src="assets/images/squadrun.png" alt="Squadrun" class="img-fluid codeshala-company-image">
+            </div>
+            <div class="col-lg-3 mx-auto">
+                <img src="assets/images/smartprix.png" alt="Smartprix" class="img-fluid codeshala-company-image">
+            </div>
+            <div class="col-lg-3 mx-auto">
+                <img src="assets/images/st.png" alt="ST" class="img-fluid codeshala-company-image">
+            </div>
+            <div class="col-lg-3 mx-auto">
+                <img src="assets/images/magicpin.png" alt="MagicPin" class="img-fluid codeshala-company-image">
+            </div>
+            <div class="col-lg-3 mx-auto">
+                <img src="assets/images/tcs.png" alt="TCS" class="img-fluid codeshala-company-image">
+            </div>
+            <div class="col-lg-3 mx-auto">
+                <img src="assets/images/daffodil.png" alt="Daffodil" class="img-fluid codeshala-company-image">
+            </div>
+            <div class="col-lg-3 mx-auto">
+                <img src="assets/images/capegemini.png" alt="Capegemini" class="img-fluid codeshala-company-image">
+            </div>
+            <div class="col-lg-3 mx-auto">
+                <img src="assets/images/libsys.png" alt="Libsys" class="img-fluid codeshala-company-image">
+            </div>
+            <!--Add new logos above this line-->
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>
 </body>
 
 <% include ../partials/footer-scripts %>

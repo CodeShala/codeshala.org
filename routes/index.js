@@ -1,137 +1,160 @@
 var passport = require('passport');
-//MODULE: Handles all Passport.js based login integration details
+var Strategy = require('passport-local').Strategy;
+var db = require('../db/users.js');
 
-module.exports = function (app) {
-	var Course = require('../utils/aws-init.js').course;
-	app.get('/',function(req, res){
-		Course.scan().loadAll().exec(function (err, acc) {
-			if(err){
-				console.log(err);
-			}else{
-				res.render('pages/index',{'courses':acc.Items});
-			}
-		}) 
-	});
+passport.use(new Strategy(
+    function (username, password, cb) {
+        db.findByUsername(username, function (err, user) {
+            if (err) {
+                return cb(err);
+            }
+            if (!user) {
+                return cb(null, false);
+            }
+            if (user.password != password) {
+                return cb(null, false);
+            }
+            return cb(null, user);
+        });
+    }));
 
-	app.get('/login',function(req, res){
-		res.render('pages/login');
-	});
-
-	// app.post('/login', 
-	// 	passport.authenticate('local', { failureRedirect: '/login' }),
-	// 	function(req, res) {
-	// 		res.redirect('/');
-	// 	});
-
-	app.get('/auth/github', passport.authenticate('github'));
-
-	app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/' }),
-		function(req, res) {
-			res.redirect('/');
-		}
-		);
-
-	app.get('/logout',
-		function(req, res){
-			req.logout();
-			res.redirect('/');
-		});
-
-	app.get('/profile',
-		require('connect-ensure-login').ensureLoggedIn(),
-		function(req, res){
-			res.render('pages/profile', { user: req.user });
-		});
-
-
-	app.get('/db',function(req,res){
-		Account.create({email: 'foo@example.com', name: 'Foo Bar', age: 21}, function (err, acc) {
-			res.send('created account in DynamoDB'+ acc.get('email'));
-		});
-	})
-
-	app.get('/initialize',function(req, res){
-		dynamo.createTables({
-			'Course': {readCapacity: 1, writeCapacity: 1}
-		}, function(err) {
-			if (err) {
-				res.send('Error creating tables: '+ err);
-			} else {
-				res.send('Table has been created');
-			}
-		});
-	})
-
-	app.get('/dbupdate',function(req, res){
-		Account.update({email: 'foo@example.com', name: 'Bar Tester'}, function (err, acc) {
-			res.send('update account'+ acc.get('name'));
-		});
-	})
-
-	app.get('/dbget',function(req, res){
-		Account.get('foo@example.com', {ConsistentRead: true, AttributesToGet : ['name','age']}, function (err, acc) {
-			res.send('got account'+ acc.get('email'))
-			console.log(acc.get('name'));
-			console.log(acc.get('age'));
-  console.log(acc.get('email')); // prints null
+passport.serializeUser(function (user, cb) {
+    cb(null, user.id);
 });
-	})
 
-	app.get('/course/:alias',function(req, res){
-		Course.get(req.params.alias, function (err, acc) {
-			if(err){
-				console.log(err);
-			}else{
-   //console.log(acc.attrs);
-   res.render('pages/course', { course: acc.attrs });
-}
+passport.deserializeUser(function (id, cb) {
+    db.findById(id, function (err, user) {
+        if (err) {
+            return cb(err);
+        }
+        cb(null, user);
+    });
+});
 
-}); 
-	})
+var request = require('request');
+module.exports = function (app) {
+    app.use(require('morgan')('combined'));
+    app.use(require('cookie-parser')());
+    app.use(require('body-parser').urlencoded({extended: true}));
+    app.use(require('express-session')({secret: 'keyboard cat', resave: false, saveUninitialized: false}));
 
-	app.get('/admin',function(req, res){
-		res.render('pages/admin-home');
-	})
+    app.use(passport.initialize());
+    app.use(passport.session());
 
-	app.get('/admin/courses',function(req, res){
-		Course.scan().loadAll().exec(function (err, acc) {
-			if(err){
-				console.log(err);
-			}else{
-      //console.log(acc.Items[1].attrs);
-      res.render('pages/admin-courses',{'courses':acc.Items});
-  }
-}) 
-	})
+    app.get('/privacy', function (req, res) {
+        res.render('pages/privacy-policy');
+    })
 
-	app.get('/admin/courses/add',function(req, res){
+    app.get('/admin', require('connect-ensure-login').ensureLoggedIn(), function (req, res) {
+        res.render('pages/admin-home');
+    })
 
-		res.render('pages/admin-add-courses',{response:""});
-	})
+    app.get('/admin/courses/add', require('connect-ensure-login').ensureLoggedIn(), function (req, res) {
+        res.render('pages/admin-add-courses', {response: ""});
+    })
 
-	app.get('/admin/batch/add',function(req, res){
+    app.get('/assignments', function (req, res) {
+        res.render('pages/restricted-page');
+    })
 
-		res.render('pages/admin-add-batch');
-	})
+    app.get('/contests', function (req, res) {
+        res.render('pages/restricted-page');
+    })
 
-	app.post('/admin/courses/add',function(req, res){
-		Course.create({
-			alias   : req.body.alias,
-			name : req.body.name,
-			minsessions    : req.body.minsessions,
-			maxsessions     : req.body.maxsessions,
-			fees     : req.body.fees,
-			seats     : req.body.seats,
-			description     : req.body.description,
-			courseCurriculum    : req.body.courseCurriculum,
-			courseScope     : req.body.courseScope,
-			courseRegistrationStatus     : req.body.courseRegistrationStatus
-		}, function (err, acc) {
-			if(err){
-				console.log(err);
-			}
-			res.render('pages/admin-add-courses',{response: "New Course Added"});
-		});
+    app.get('/ide', function (req, res) {
+        res.render('pages/ide');
+    })
+    app.post('/run', (req, res) => {
+        //console.log(req.body.language+" "+req.body.code+" "+req.body.input);
+        var language = req.body.language;
+        var code = req.body.code;
+        var input = req.body.input;
+        if (language == "c") {
+            /*compile_run.runC(code, input, function (stdout, stderr, err) {
+                if(!err){
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.stringify({ stdout: stdout,stderr: stderr}));
+                }
+                else{
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.stringify({ stderr: err}));
+                }
+            });*/
+            request.post({
+                    url: 'https://ide.geeksforgeeks.org/main.php',
+                    form: {code: code, input: input, lang: language, save: false}
+                },
+                function (err, httpResponse, body) {
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(body);
+                })
+        } else if (language == "c++") {
+            /*compile_run.runCpp(code, input, function (stdout, stderr, err) {
+                if(!err){
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.stringify({ stdout: stdout,stderr: stderr}));
+                }
+                else{
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.stringify({ stderr: err}));
+                }
+            });*/
+            request.post({
+                    url: 'https://ide.geeksforgeeks.org/main.php',
+                    form: {code: code, input: input, lang: 'Cpp', save: false}
+                },
+                function (err, httpResponse, body) {
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(body);
+                })
+        } else if (language == "Python") {
+            request.post({
+                    url: 'https://ide.geeksforgeeks.org/main.php',
+                    form: {code: code, input: input, lang: language, save: false}
+                },
+                function (err, httpResponse, body) {
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(body);
+                })
+        } else if (language == "Python3") {
+            request.post({
+                    url: 'https://ide.geeksforgeeks.org/main.php',
+                    form: {code: code, input: input, lang: language, save: false}
+                },
+                function (err, httpResponse, body) {
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(body);
+                })
+        } else {
+            console.log('Language Not Supported')
+        }
+        //res.send("OK");
+    })
 
-	})
+    app.get('/login',
+        function (req, res) {
+            res.render('pages/login');
+        });
+
+    app.post('/login',
+        passport.authenticate('local', {failureRedirect: '/login'}),
+        function (req, res) {
+            res.redirect('/admin');
+        });
+
+    app.get('/logout',
+        function (req, res) {
+            req.logout();
+            res.redirect('/');
+        });
+
+    app.get('/profile',
+        require('connect-ensure-login').ensureLoggedIn(),
+        function (req, res) {
+            res.render('pages/profile', {user: req.user});
+        });
+
+    app.get('/push', function (req, res) {
+        res.render('push');
+    })
 }

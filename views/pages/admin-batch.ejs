@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Courses | Admin | Codeshala | Get Better At Programing By Joining The Best programing courses in Delhi
+    <title>Batch | Admin | Codeshala | Get Better At Programing By Joining The Best programing courses in Delhi
         NCR</title>
     <% include ../partials/header %>
     <% include ../partials/metadata %>
@@ -17,38 +17,46 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/admin">Admin Home</a></li>
-                    <li class="breadcrumb-item"><a href="/admin/courses">View All Courses</a></li>
+                    <li class="breadcrumb-item"><a href="/admin/batch">View All Batches</a></li>
                 </ol>
             </nav>
             <br/>
             <div class="card">
                 <div class="card-header">
-                    View All Courses
+                    View All Batches
                 </div>
 
 
                 <div class="card-body">
                     <div class="row">
 
-                        <% for(key in courses){ %>
+                        <% for(key in batch){ %>
                         <div class="card border-info" style="margin:10px;">
-                            <div class="card-header"><%= courses[key].name %>
+                            <div class="card-header">
+                                <% if(batch[key].visibility == "hidden"){ %>
+                                [DELETED]
+                                <% }else{ %>
+                                [LIVE]
+                                <% } %>
+                                <%= batch[key].course_alias %>
                                 <a class="dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false"></a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Edit</a>
-                                    <a class="dropdown-item" href="#">Delete</a>
-                                    <% if(courses[key].courseRegistrationStatus == "OPEN") { %>
-                                    <a class="dropdown-item" href="#">Close Registrations</a>
+                                    <a class="dropdown-item" href="/admin/batch/registrations/<%= batch[key]._id %>">Registrations</a>
+                                    <a class="dropdown-item" href="/admin/batch/update/<%= batch[key]._id %>">Edit</a>
+                                    <% if(batch[key].visibility == "public"){ %>
+                                    <a class="dropdown-item" href="/admin/batch/hide/<%= batch[key]._id %>">Hide</a>
                                     <% }else{ %>
-                                    <a class="dropdown-item" href="#">Open Registrations</a>
+                                    <a class="dropdown-item" href="/admin/batch/show/<%= batch[key]._id %>">Make
+                                        Public</a>
                                     <% } %>
+
                                 </div>
                             </div>
                             <div class="card-body text-info">
-                                <%= courses[key].courseRegistrationStatus %>
+                                <%= batch[key].venue %>
                                 |
-                                <%= courses[key].minsessions %> - <%= courses[key].maxsessions %> Sessions
+                                <%= batch[key].start_date %> - <%= batch[key].end_date %>
                                 <br/>
 
                             </div>
