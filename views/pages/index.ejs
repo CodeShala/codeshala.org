@@ -37,6 +37,13 @@
             <div class="codeshala-course-thumbnail"
                  style="background-image:url(/assets/images/course-icon/algo.png);background-size:cover;background-repeat: no-repeat;"></div>
             <h2><a href="/course/<%= courses[key].alias %>"><%= courses[key].name %></a></h2>
+            <h2>
+                <% if(batch.length){ %>
+                <% for(index in batch){
+                if(batch[index].course_alias == courses[key].alias){ %>
+                Starting From <%= batch[index].start_date %><br/>
+                <% } } } %>
+            </h2><br/><br/>
             <p><%= courses[key].minsessions %> - <%= courses[key].maxsessions %>
                 Sessions<br/><%= courses[key].description %></p>
             <span class="text-center codeshala-theme codeshala-course-card-btn"><a

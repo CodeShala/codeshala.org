@@ -118,7 +118,10 @@
             <%= course.name %><br/>
             <span class="text-center codeshala-theme codeshala-course-card-btn">
                 <% if(batch.length){ %>
-                Register Now
+                Batches open for registration:<br/>
+                <% for(index in batch){ %>
+                Starting From <%= batch[index].start_date %> @ <%= batch[index].venue %> <br/>
+                <% } %>
                 <% } else{ %>
                 Registrations Closed
                 <% } %>
