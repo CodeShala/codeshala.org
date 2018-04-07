@@ -1,6 +1,6 @@
 {
   "name": "codeshala.org",
-  "version": "0.1.0",
+  "version": "1.1.0",
   "description": " The main website of codeshala ",
   "main": "index.js",
   "scripts": {
@@ -16,14 +16,25 @@
     "codeshala",
     "website"
   ],
-  "author": "vipinkhushu@hotmail.com",
+  "author": "vipin@codeshala.org",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/CodeShala/codeshala.org/issues"
   },
   "homepage": "https://github.com/CodeShala/codeshala.org#readme",
   "dependencies": {
-    "ejs": "2.5.7",
-    "express": "4.16.2"
+    "body-parser": "1.18.2",
+    "connect-ensure-login": "0.1.1",
+    "cookie-parser": "1.4.3",
+    "dotenv": "5.0.1",
+    "ejs": "2.5.8",
+    "express": "4.16.2",
+    "express-session": "1.15.6",
+    "mongoose": "5.0.11",
+    "morgan": "1.9.0",
+    "node-ga": "0.1.1",
+    "passport": "0.4.0",
+    "passport-local": "1.0.0",
+    "request": "2.85.0"
   }
 }

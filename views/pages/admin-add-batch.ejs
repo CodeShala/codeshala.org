@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>
+        <% if(batch){ %>
+        Edit Batch Details
+        <% }else{ %>
+        Add Batch
+        <% } %>
+        | Admin | Codeshala | Get Better At Programing By Joining The Best programing courses in Delhi NCR</title>
+    <% include ../partials/header %>
+    <% include ../partials/metadata %>
+</head>
+<body>
+<% include ../partials/nav %>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3">
+            <% include ../partials/admin-menu %>
+        </div>
+        <div class="col-lg-9">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/admin">Admin Home</a></li>
+                    <li class="breadcrumb-item"><a href="/admin/batch">All Batches</a></li>
+                    <% if(batch){ %>
+                    <li class="breadcrumb-item"><a href="">Edit Batch</a></li>
+                    <% }else{ %>
+                    <li class="breadcrumb-item"><a href="/admin/batch/add">Add Batch</a></li>
+                    <% } %>
+                </ol>
+            </nav>
+            <br/>
+            <div class="card">
+                <div class="card-header">
+                    <% if(batch){ %>
+                    Edit Batch Details
+                    <% }else{ %>
+                    Add New Batch
+                    <% } %>
+                </div>
+                <div class="card-body">
+                    <% if (response) { %>
+                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                        <p><%= response %></p>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <% } %>
+
+                    <% if(batch){ %>
+                    <form method="post" action="/admin/batch/update/<%= batch._id %>">
+                        <% }else{ %>
+                        <form method="post" action="/admin/batch/add">
+                            <% } %>
+
+                            <div class="form-group">
+                                <label for="formGroupExampleInput2">Course</label>
+                                <% if(batch){ %>
+                                <input type="text" class="form-control" value="<%= batch.course_alias %>" readonly>
+                                <% }else{ %>
+                                <select name="course_alias" class="form-control">
+                                    <% for(index in course){ %>
+                                    <option value="<%= course[index].alias %>"><%= course[index].name %></option>
+                                    <% } %>
+                                </select>
+                                <% } %>
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput2">Start Date</label>
+                                <input type="date" class="form-control" name="start_date"
+                                       <% if(batch){ %>value="<%= batch.start_date %>"
+                                        <% } %>
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="formGroupExampleInput2">End Date</label>
+                                <input type="date" class="form-control" name="end_date"
+                                       <% if(batch){ %>value="<%= batch.end_date %>"
+                                        <% } %>
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="formGroupExampleInput2">Venue</label><br/>
+                                <select name="venue" class="form-control">
+                                    <% for(index in venue){
+                                    if(venue[index].name == batch.venue){
+                                    %>
+                                    <option value="<%= venue[index].name %>" selected><%= venue[index].name %></option>
+
+                                    <% } else{ %>
+                                    <option value="<%= venue[index].name %>"><%= venue[index].name %></option>
+                                    <% } %>
+                                    <% } %>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="formGroupExampleInput2">Intake</label>
+                                <input type="text" name="intake" class="form-control" id="formGroupExampleInput2"
+                                       placeholder="e.g. 20" <% if(batch){ %>value="<%= batch.intake %>"
+                                <% } %>>
+                            </div>
+                            <br/>
+                            <% if(batch){ %>
+                            <input type="submit" class="btn btn-primary" value="Update Batch">
+                            <% }else{ %>
+                            <input type="submit" class="btn btn-primary" value="Start Batch">
+                            <% } %>
+
+                        </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>
+</body>
+
+<% include ../partials/footer-scripts %>
+
+</html>

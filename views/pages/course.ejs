@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title><%= course.name %> | Codeshala | Get Better At Programing By Joining The Best programing courses in Delhi
+        NCR</title>
+    <% include ../partials/header %>
+    <% include ../partials/metadata %>
+    <!-- HTTPS required. HTTP will give a 403 forbidden response -->
+    <script src="https://sdk.accountkit.com/en_US/sdk.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <style>
+        #step1 {
+            display: block;
+        }
+
+        #step2 {
+            display: none;
+        }
+
+        #step3 {
+            display: none;
+        }
+
+        #process-step1 {
+            font-weight: bold;
+        }
+
+        #registration-alert-danger {
+            display: none;
+        }
+
+        #reqd-fields {
+            color: red;
+        }
+    </style>
+    <script type="text/javascript">
+        // initialize Account Kit with CSRF protection
+        AccountKit_OnInteractive = function () {
+            AccountKit.init(
+                {
+                    appId: "348992692256013",
+                    state: "poiuycgh",
+                    version: "v1.1",
+                    fbAppEventsEnabled: true,
+                    redirect: "http://codeshala.org/success",
+                    debug: "true"
+                }
+            );
+        };
+
+
+        // phone form submission handler
+        function smsLogin() {
+            var countryCode = document.getElementById("country_code").value;
+            var phoneNumber = document.getElementById("phone_number").value;
+            AccountKit.login(
+                'PHONE',
+                {countryCode: countryCode, phoneNumber: phoneNumber}, // will use default values if not specified
+                loginCallback
+            );
+        }
+
+
+        // email form submission handler
+        function emailLogin() {
+            var emailAddress = document.getElementById("email").value;
+            AccountKit.login(
+                'EMAIL',
+                {emailAddress: emailAddress},
+                loginCallback
+            );
+        }
+
+        // login callback
+        function loginCallback(response) {
+            if (response.status === "PARTIALLY_AUTHENTICATED") {
+                var code = response.code;
+                var csrf = response.state;
+                console.log(code + " " + csrf);
+
+                $('#registration-alert-danger').show();
+                $('#registration-alert-danger').removeClass('alert-danger');
+                $('#registration-alert-danger').addClass('alert-primary');
+                $('#registration-alert-danger').html('You successfully verified your phone number, Now choose a batch');
+                $('#process-step1').css('color', 'green');
+                $('#process-step2').css('font-weight', 'bold');
+                $('#step1').hide();
+                $('#step2').show();
+
+            }
+            else if (response.status === "NOT_AUTHENTICATED") {
+                $('#registration-alert-danger').show();
+                $('#registration-alert-danger').html('Your mobile could not be verified. Please try again');
+                console.log("NA");
+            }
+            else if (response.status === "BAD_PARAMS") {
+                // handle bad parameters
+                $('#registration-alert-danger').show();
+                $('#registration-alert-danger').html('Your mobile could not be verified. Please try again');
+                console.log("BP");
+            }
+        }
+
+        function enableBtn() {
+            document.getElementById("button1").disabled = false;
+        }
+    </script>
+
+
+</head>
+<body>
+<% include ../partials/nav %>
+<div class="container-fluid codeshala-banner">
+    <div class="container text-center codeshala-course-heading">
+        <h1>
+            <img src="/assets/images/course-icon/algo.png" height="100px">
+            <%= course.name %><br/>
+            <span class="text-center codeshala-theme codeshala-course-card-btn">
+                <% if(batch.length){ %>
+                Register Now
+                <% } else{ %>
+                Registrations Closed
+                <% } %>
+            </span>
+        </h1>
+        <br/>
+        <p><%= course.description %></p>
+        <br/><br/><br/>
+    </div>
+</div>
+<div class="container" id="courses-registration-section">
+    <div class="row mx-auto">
+        <% if(batch.length){ %>
+        <div class="card col-lg-11 codeshala-course-registration-card text-left">
+            <h3>Register Now</h3>
+            <hr/>
+            <div class="row">
+                <div class="col-lg-4 codeshala-course-registration-border">
+                    <span id="process-step1">Step 1 : Register/Sign In</span>
+                </div>
+                <div class="col-lg-4 codeshala-course-registration-border">
+                    <span id="process-step2">Step 2 : Choose Batch</span>
+                </div>
+                <div class="col-lg-4 codeshala-course-registration-border">
+                    <span id="process-step3">Step 3 : Fill up your details &amp; Its Done!</span>
+                </div>
+            </div>
+            <hr/>
+            <div class="alert alert-danger" role="alert" id="registration-alert-danger"></div>
+            <div class="row" id="step1">
+                <div class="col-lg-6 codeshala-course-registration-border" style="margin-top:20px"><b>Register/Sign
+                        In:</b><br/>
+                    <form method="post" action="/course/register">
+                        <div class="form-group">
+                            <label>Enter Your Mobile Number</label>
+                            <input value="+91" id="country_code" hidden/>
+                            <input type="text" placeholder="10 digit phone number" id="phone_number" name="phoneno"
+                                   class="form-control" maxlength="10" minlength="10" required>
+                            <div class="valid-feedback" id="message-correct-otp">
+                                Looks good! Click on send OTP to verify your phone number
+                            </div>
+                            <div class="invalid-feedback" id="message-incorrect-otp">
+                                Please correct your phone number.
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" onclick="smsLogin();" id="getOTP" disabled>Get OTP</button>
+                </div>
+            </div>
+            <br/>
+            <div class="row" id="step2">
+                <div class="col-lg-12 codeshala-course-registration-border"><b>Choose Batch:</b><br/>
+                    <% if(batch.length){ %>
+                    <select class="custom-select custom-select-lg mb-3" name="batch" style="margin:20px">
+                        <% for(index in batch){ %>
+                        <option value="<%= batch[index]._id %>">Starting From <%= batch[index].start_date %>
+                            @ <%= batch[index].venue %> </option>
+                        <% } %>
+                    </select>
+                    <button class="btn btn-primary" id="goToStep3">Next</button>
+                    <% }else{ %>
+                    No Batches are currently open for this course
+                    <% } %>
+                </div>
+            </div>
+            <br/>
+            <div class="row" id="step3">
+                <div class="col-lg-6 codeshala-course-registration-border"><b>Fill up your details:</b>
+                    <small>Fields marked with <span id="reqd-fields">*</span> are required fields.</small>
+                    <br/><br/>
+                    <div class="form-group">
+                        <label>Enter Your Email <span id="reqd-fields">*</span></label>
+                        <input type="email" placeholder="Your email" id="email" name="email" class="form-control"
+                               required>
+                    </div>
+                    <div class="form-group">
+                        <label>Enter Your First Name <span id="reqd-fields">*</span></label>
+                        <input type="text" placeholder="Your first name" id="first_name" name="first_name"
+                               class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Enter Your Last Name</label>
+                        <input type="text" placeholder="Your last name" id="last_name" name="last_name"
+                               class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Enter Your Date of birth</label>
+                        <input type="date" placeholder="Your DOB" id="dob" name="dob" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Enter Your Colleges Name <span id="reqd-fields">*</span></label>
+                        <input type="text" placeholder="Your college" id="college" name="college" class="form-control"
+                               required>
+                    </div>
+                    <div class="form-group">
+                        <label>Select Your Branch <span id="reqd-fields">*</span></label>
+                        <select name="branch" id="branch" class="custom-select custom-select-lg mb-3">
+                            <option value="CE">Computer Engineering</option>
+                            <option value="IT">Information Technology</option>
+                            <option value="ECE">Electronics &amp; Communication</option>
+                            <option value="EL">Electrical Engineering</option>
+                            <option value="ME">Mechanical Engineering</option>
+                            <option value="EIC">Electronics and Instrumentation</option>
+                            <option value="OTHERS">Others</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Select Your Year Of Passing <span id="reqd-fields">*</span></label>
+                        <select name="year_passing" id="name_passing" class="custom-select custom-select-lg mb-3"
+                                required>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                        </select>
+                    </div>
+                    <br/>
+                    <div class="g-recaptcha" data-sitekey="6LfGPlAUAAAAAHckylm7SfwF6gxIcUyHrqBoHGAA"
+                         data-callback="enableBtn"></div>
+                    <br/>
+                    <button class="btn btn-primary" id="button1" disabled>Register for the course</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <% } else{ %>
+        <div class="card col-lg-11 codeshala-course-registration-card text-left">
+            <h3>Registrations are currently closed for this course</h3>
+        </div>
+        <% } %>
+    </div>
+</div>
+<div class="container" id="courses-section">
+    <div class="row mx-auto">
+        <div class="card col-lg-5 codeshala-course-card">
+            <h2>Duration</h2>
+            <p><%= course.minsessions %> - <%= course.maxsessions %> Sessions</p>
+            <h2>Fees</h2>
+            <p>INR <%= course.fees %>/-</p>
+            <h2>Number of seats</h2>
+            <p><%= course.seats %></p>
+        </div>
+        <div class="card col-lg-5 codeshala-course-detail-card sidebar-box">
+
+            <h2>Course Curriculum</h2>
+
+            <ul class="codeshala-course-description-list">
+                <%- course.courseCurriculum %>
+            </ul>
+            <p class="readmore"><a href="#" class="button">Read More</a></p>
+        </div>
+        <!-- Insert new course above this line-->
+    </div>
+</div>
+<div class="container" id="courses-section">
+    <div class="row mx-auto">
+        <div class="card col-lg-5 codeshala-course-card">
+
+        </div>
+        <div class="card col-lg-5 codeshala-course-card">
+
+        </div>
+    </div>
+</div>
+<div class="container" id="feedbacks">
+    <h3 class="text-dark text-left font-weight-bold">
+        Course Feedbacks By Our Students
+    </h3>
+    <div class="row">
+        <% for(index in feedbacks){ %>
+        <div class="card col-lg-12 codeshala-feedbacks-card">
+            <div class="row">
+                <div class="col-lg-2">
+                    <img src="/assets/images/feedbacks/sample.jpg" height="150px" width="150px">
+                </div>
+                <div class="col-lg-10">
+                    <h2 class="codeshala-feedbacks-title"><%= feedbacks[index].first_name %>
+                        &nbsp;<%= feedbacks[index].last_name %> </h2>
+                    <p class="codeshala-feedbacks-description">
+                        <% if(feedbacks[index].intern_at){ %>
+                        Intern at <%= feedbacks[index].intern_at %>
+                        <% } if(feedbacks[index].placed_at){ %>
+                        | Placed at <%= feedbacks[index].placed_at %>
+                        <% } %>
+                        <br/>
+                        <%= feedbacks[index].feedback %>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <% } %>
+    </div>
+</div>
+<div class="container-fluid codeshala-placements" id="placements">
+    <div class="container">
+        <h3 class="text-light text-center font-weight-bold">
+            Confused on which course you should choose?<br/>
+            <span class="text-center codeshala-theme codeshala-course-card-btn">
+					<a href="/courses/node-js" class="text-light" data-toggle="modal" data-target="#CourseChooserModal">
+						Try our course finder tool 
+						<i class="fa fa-arrow-right"></i>
+					</a>
+				</span>
+
+        </h3>
+    </div>
+</div>
+<% include ../partials/footer %>
+</body>
+
+<% include ../partials/footer-scripts %>
+<script src="/assets/js/registration.js"></script>
+</html>

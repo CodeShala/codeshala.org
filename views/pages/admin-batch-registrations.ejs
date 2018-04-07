@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Registrations | Batch | Admin | Codeshala | Get Better At Programing By Joining The Best programing courses
+        in Delhi NCR</title>
+    <% include ../partials/header %>
+    <% include ../partials/metadata %>
+</head>
+<body>
+<% include ../partials/nav %>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3">
+            <% include ../partials/admin-menu %>
+        </div>
+        <div class="col-lg-9">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/admin">Admin Home</a></li>
+                    <li class="breadcrumb-item"><a href="/admin/batch">View All Batches</a></li>
+                    <li class="breadcrumb-item"><a href="">Registrations</a></li>
+                </ol>
+            </nav>
+            <br/>
+            <div class="card">
+                <div class="card-header">
+                    View Registrations
+                </div>
+
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">DOB</th>
+                                    <th scope="col">College</th>
+                                    <th scope="col">Branch</th>
+                                    <th scope="col">Passing Year</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <% for(index in students){ %>
+                                <tr>
+                                    <th scope="row"><%= index %></th>
+                                    <td><%= students[index].first_name %></td>
+                                    <td><%= students[index].last_name %></td>
+                                    <td><%= students[index].dob %></td>
+                                    <td><%= students[index].college %></td>
+                                    <td><%= students[index].branch %></td>
+                                    <td><%= students[index].year_passing %></td>
+                                </tr>
+                                <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<% include ../partials/footer %>
+</body>
+
+<% include ../partials/footer-scripts %>
+
+</html>

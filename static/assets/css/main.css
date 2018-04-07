@@ -1,59 +1,453 @@
-body{
-	background-color: #f3f3f3;
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
 }
-nav{
-	background-color: #323754;
+
+body {
+    background-color: #f3f3f3;
+    font-family: Gotham SSm A, Gotham SSm B, Helvetica, sans-serif;
 }
-.container{
-	margin-top: 30px;
-	margin-bottom: 30px;
+
+a {
+    color: #323754;
 }
-.codeshala-logo{
-	 width:200px;
-	 height: 40px;
+
+a:hover {
+    text-decoration: none;
 }
-.codeshala-heading{
-	height:250px;
+
+nav {
+    background: linear-gradient(#a1a1a2, transparent);
 }
-.codeshala-heading > h1{
-	margin-top:140px;
+
+.container {
+    margin-top: 50px;
+    margin-bottom: 60px;
 }
-.codeshala-course-card{
-	margin-left:40px;
-	margin-right: 40px; 
-	margin-bottom: 40px;
+
+.codeshala-theme {
+    color: #323754;
 }
-.codeshala-course-card > h2{
-	margin-top:20px;
+
+.codeshala-logo {
+    width: 200px;
+    height: 40px;
 }
-.codeshala-description{
-	margin:30px;
+
+.codeshala-heading {
+    height: 250px;
+    z-index: 9999;
 }
-.codeshala-company-image{
-	margin-bottom: 20px;
+
+.codeshala-banner {
+/ / background-image: url('/assets/images/banners/background.png');
 }
-.codeshala-stats-card{
-	 margin:40px;
+
+.codeshala-heading > h1 {
+    font-size: 25px;
+    font-weight: 700;
 }
-.codeshala-contact > i {
-	margin-right: 10px;
-	margin-bottom:10px;
+
+.codeshala-course-heading > h1 {
+    margin-top: 50px;
+    font-size: 2vw;
+    font-weight: 700;
 }
-.codeshala-social{
-	padding:30px;
+
+.codeshala-heading > h2 {
+    color: #7f7f7f;
+    font-size: 15px;
+    font-weight: 300;
+
 }
-.codeshala-btninfo > a{
-	margin:10px;
-	padding:10px;
+
+.codeshala-course-card {
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 140px;
+    margin-top: -100px;
+    vertical-align: top;
+    will-change: transform;
+    -webkit-transition: .2s;
+    -o-transition: .2s;
+    transition: .2s;
+    -webkit-box-shadow: 0 2px 64px 0 rgba(208, 208, 208, .5);
+    box-shadow: 0 2px 64px 0 rgba(208, 208, 208, .5);
+    padding: 0px 24px;
+    position: relative;
 }
-.codeshala-feedbacktext{
-	font-size: 14px;
+
+.codeshala-course-registration-card {
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 140px;
+    -webkit-box-shadow: 0 2px 64px 0 rgba(208, 208, 208, .5);
+    box-shadow: 0 2px 64px 0 rgba(208, 208, 208, .5);
+    padding: 25px;
 }
-.codeshala-feedbackcard{
-	background-color: #f3f3f3;
-	border-radius: 5px;
+
+.codeshala-course-registration-card > h3 {
+    font-weight: 600;
 }
-.codeshala-feedbackimage{
-	width: 80px;
-	margin: 35px;
+
+.codeshala-course-registration-border {
+    border-left: 4px solid black;
+}
+
+.codeshala-course-detail-card {
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 140px;
+    margin-top: -100px;
+    vertical-align: top;
+    will-change: transform;
+    -webkit-transition: .2s;
+    -o-transition: .2s;
+    transition: .2s;
+    -webkit-box-shadow: 0 2px 64px 0 rgba(208, 208, 208, .5);
+    box-shadow: 0 2px 64px 0 rgba(208, 208, 208, .5);
+    padding: 0px 24px;
+    position: relative;
+    max-height: 340px;
+    position: relative;
+    overflow: hidden;
+}
+
+.codeshala-course-detail-card > h2 {
+    margin-top: 20px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.codeshala-course-detail-card > p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 30px 0;
+    background-image: linear-gradient(to bottom, transparent, black);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(210, 0, 0, 0)), color-stop(1, #a1a1a2));
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.codeshala-course-card:hover {
+    webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.codeshala-course-card > h2 {
+    margin-top: 20px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.codeshala-course-card > p {
+    color: #7f7f7f;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+.codeshala-course-thumbnail {
+    width: 84px;
+    height: 84px;
+    margin: 25px auto 20px;
+    background-size: cover;
+}
+
+.codeshala-course-card-btn {
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: .5px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.codeshala-description {
+    margin: 30px;
+}
+
+.codeshala-company-image {
+    margin-bottom: 20px;
+}
+
+.codeshala-stats-card {
+    margin: 25px;
+    border-radius: 50%;
+    width: 210px;
+    height: 210px;
+    border: 0px solid black;
+    will-change: transform;
+    -webkit-transition: .2s;
+    -o-transition: .2s;
+    transition: .2s;
+    -webkit-box-shadow: 0 2px 64px 0 rgba(208, 208, 208, .5);
+    box-shadow: 0 2px 64px 0 rgba(208, 208, 208, .5);
+    background-color: #fff;
+}
+
+.codeshala-stats-card > span {
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: relative;
+    float: left;
+}
+
+.codeshala-stats-card-count {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.codeshala-projects-card {
+    margin: 20px;
+    will-change: transform;
+    -webkit-transition: .1s;
+    -o-transition: .1s;
+    transition: .1s;
+    -webkit-box-shadow: 0 2px 64px 0 rgba(208, 208, 208, .5);
+    box-shadow: 0 2px 64px 0 rgba(208, 208, 208, .5);
+    background-color: #fff;
+}
+
+.codeshala-projects-card:hover {
+    box-shadow: 0 2px 64px 0 rgba(208, 208, 208, .5);
+    webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.codeshala-projects-thumbnail {
+    width: 100%;
+    height: 184px;
+    margin: 25px auto 20px;
+    background-size: cover;
+}
+
+.codeshala-projects-title {
+    margin-top: 25px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.codeshala-projects-description {
+    color: #7f7f7f;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+.codeshala-arrow {
+    top: 43%;
+    right: 2%;
+    position: absolute;
+    z-index: 2;
+}
+
+.codeshala-feedbacks-card {
+    margin: 20px;
+    -webkit-box-shadow: 0 2px 64px 0 rgba(208, 208, 208, .5);
+    box-shadow: 0 2px 64px 0 rgba(208, 208, 208, .5);
+    background-color: #fff;
+}
+
+.codeshala-feedbacks-thumbnail {
+    background-size: cover;
+}
+
+.codeshala-feedbacks-title {
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.codeshala-feedbacks-description {
+    color: #7f7f7f;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+.codeshala-placements {
+    background: #262626;
+    border-top: 1px solid #252525;
+    padding: 30px 10px;
+}
+
+.codeshala-placements-container {
+    margin: 30px;
+}
+
+.codeshala-course-description-list > li {
+    color: #7f7f7f;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+.codeshala-footer-course-finder-link {
+    color: #fff;
+}
+
+footer {
+    background: #191919;
+    text-align: center;
+    padding: 50px 10px;
+    border-top: 1px solid #252525;
+    color: #7f7f7f;
+    font-size: 14px;
+}
+
+.footer-links {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+}
+
+.footer-links > li > a {
+    color: #7f7f7f;
+}
+
+.footer-links > li > a:hover {
+    color: #ffffff;
+}
+
+.footer-links-title {
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.ribbon {
+
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    position: absolute;
+}
+
+.ribbon::before,
+.ribbon::after {
+
+    position: absolute;
+    z-index: -1;
+    content: '';
+    display: block;
+    border: 5px solid #2980b9;
+}
+
+.ribbon span {
+
+    position: absolute;
+    display: block;
+    width: 225px;
+    padding: 15px 0;
+    background-color: #3498db;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+    color: #fff;
+    font: 700 18px/1 'Lato', sans-serif;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.ribbon-top-left {
+    top: -10px;
+    left: -10px;
+}
+
+.ribbon-top-left::before,
+.ribbon-top-left::after {
+    border-top-color: transparent;
+    border-left-color: transparent;
+}
+
+.ribbon-top-left::before {
+    top: 0;
+    right: 0;
+}
+
+.ribbon-top-left::after {
+    bottom: 0;
+    left: 0;
+}
+
+.ribbon-top-left span {
+
+    right: -25px;
+    top: 30px;
+    transform: rotate(-45deg);
+}
+
+.codeshala-github-btn {
+    margin: 15px;
+    color: #fff;
+    background-color: #444;
+    border-color: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 7px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    padding-left: 44px;
+    width: 350px
+}
+
+.codeshala-github-btn:hover {
+    background-color: #000;
+}
+
+.codeshala-github-btn-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 32px;
+    padding: 2px;
+    line-height: 34px;
+    font-size: 1.6em;
+    text-align: center;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.cs-color {
+    background-color: #323754;
+}
+
+.container {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.codeshala-logo {
+    width: 200px;
+    height: 40px;
+}
+
+#editor {
+    min-height: 500px;
+}
+
+.code-toolbar {
+    padding: 10px;
+}
+
+.ide-footer-container {
+    color: #fff;
+    padding: 15px;
+}
+
+.ide-footer-container hr {
+    background-color: #fff;
 }

@@ -1,32 +1,30 @@
-/********************
- ****Importing Required Modules
- ********************
-**/
 var express = require('express');
+var dotenv = require('dotenv').config();
+var bodyParser = require('body-parser');
+
 var app = express();
 
-/****************************************
- ****Configuring Folder for Static Assets   
- ****************************************
-**/
-app.use(express.static('static'));
+//MODULE: Handles all Google Analytics Integration
+var ga_init = require('./utils/ga-init.js')(app);
+//MODULE: Handles all express bases routes
+var routes = require('./routes')(app);
+//MODULE: Handles all mongoDB Requests
+var db = require('./db')(app);
 
-/******************************************************
- ****Configuring rendering engine for webpage rendering   
- ******************************************************
-**/
+//Process application/x-www-form-urlencoded & application/json
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
+//Setting 'static' folder to handle all static files like css,js,jpg,png. All static data will be fetched from this folder
+app.use(express.static('static'));
+//Setting ejs as view engine to render dynamic data into html
 app.set('view engine', 'ejs');
 
-
-app.get('/',function(req, res){
-	res.render('index');
+//Route to handle 404 
+app.get('/*', function (req, res) {
+    res.send("404 | Page Not Found<br/>This website is still under development")
 })
 
-
-/******************************************************
- ****Spinning up the server on a port   
- ******************************************************
-**/
-app.listen(process.env.PORT||3000,function(){
-	console.log('SERVER LISTENING');
+//Spinning our server up
+app.listen(process.env.PORT, function () {
+    console.log('SERVER LISTENING AT PORT ' + process.env.PORT);
 })

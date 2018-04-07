@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Codeshala IDE | Code, Compile, Run</title>
+    <% include ../partials/header %>
+    <% include ../partials/metadata %>
+
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="/">
+            <img class="codeshala-logo" src="assets/images/site_logo.png"> IDE
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav justify-content-end">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/"> New Code <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"> API </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"> Help </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
+
+            <div class="row cs-color">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 code-toolbar">
+                    <select class="custom-select float-left" id="selectLanguage">
+                        <option value="c" selected>C</option>
+                        <option value="c++">C++</option>
+                        <option value="Python">Python 2</option>
+                        <option value="Python3">Python 3</option>
+                    </select>
+                    <select class="custom-select float-right" id="selectTheme">
+                        <option value="default" selected>Default Theme</option>
+                        <option value="twilight">Twilight</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <pre id="editor" style="left:0;right:0;"></pre>
+                </div>
+            </div>
+            <div class="row bg-white">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 code-toolbar">
+                    <input type="checkbox" value="" id="checkCustomInput">
+                    <label for="checkCustomInput">
+                        Use custom input
+                    </label>
+                    <button type="button" class="btn btn-secondary float-right" id="runCodeBtn"><i
+                                class="fa fa-cogs"></i> Run
+                    </button>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 code-toolbar" id="customInputDiv">
+                    <div class="form-group">
+                        <label for="usersSTDIN">STDIN</label>
+                        <textarea class="form-control" id="usersSTDIN" rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row bg-white" id="divOutput">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 code-toolbar">
+                    <strong>Time</strong>
+                    <hr>
+                    <div id="time">
+
+                    </div>
+                    <br/>
+                    <strong>Memory</strong>
+                    <hr>
+                    <div id="memory">
+
+                    </div>
+                    <br/>
+                    <strong>OUTPUT</strong>
+                    <hr>
+                    <div id="stdout">
+
+                    </div>
+                    <br/>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+            ..
+
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.1/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.1/ext-language_tools.js" type="text/javascript"></script>
+<% include ../partials/footer-scripts %>
+
+</html>
