@@ -35,7 +35,7 @@
             } %>
 
             <div class="codeshala-course-thumbnail"
-                 style="background-image:url(/assets/images/course-icon/algo.png);background-size:cover;background-repeat: no-repeat;"></div>
+                 style="background-image:url(<%= courses[key].courseThumbnail %>);background-size:cover;background-repeat: no-repeat;"></div>
             <h2><a href="/course/<%= courses[key].alias %>"><%= courses[key].name %></a></h2>
             <h2>
                 <% if(batch.length){ %>
@@ -187,7 +187,9 @@
 </div>
 <% include ../partials/footer %>
 <button class="expanded large button js-button" disabled style="display:none">Enable Push Notifications</button>
-<p><pre class="js-subscription" style="display:none"></pre></p>
+<p>
+<pre class="js-subscription" style="display:none"></pre>
+</p>
 </body>
 
 <% include ../partials/footer-scripts %>

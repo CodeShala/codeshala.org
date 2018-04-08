@@ -24,7 +24,8 @@ var CourseSchema = mongoose.Schema({
     minsessions: Number,
     seats: Number,
     courseProjects: String,
-    viewIndex: Number
+    viewIndex: Number,
+    courseThumbnail: String
 });
 
 var venueSchema = mongoose.Schema({
@@ -187,6 +188,9 @@ module.exports = function (app) {
         studentsRegistered = [];
         Registration.find({batch: req.params.batchId}, function (err, r_data) {
             console.log("r_data len:" + r_data.length);
+            if (!r_data.length) {
+                res.render('pages/admin-batch-registrations', {'students': ''});
+            }
             for (index in r_data) {
                 Student.findOne({phoneno: r_data[index].phoneno}, function (err, s_data) {
                     if (err) console.error(err);
@@ -308,7 +312,8 @@ module.exports = function (app) {
             maxsessions: req.body.maxsessions,
             minsessions: req.body.minsessions,
             seats: req.body.seats,
-            courseProjects: req.body.courseProjects
+            courseProjects: req.body.courseProjects,
+            courseThumbnail: req.body.courseThumbnail
         })
         newCourse.save(function (err, data) {
             if (err) return console.error(err);
