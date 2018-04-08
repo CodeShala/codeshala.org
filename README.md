@@ -21,8 +21,8 @@ We are community of programmers. Our community is lead by professionals who have
 
 ### Hosting Server
 
-* Production Server (Master Branch) : [codeshala.org](http://codeshala.org)
-* Staging Server (Develop Branch) : [codeshala.herokuapp.com](https://codeshala.herokuapp.com)
+* Production Server : [codeshala.org](http://codeshala.org)
+* Staging Server : [test.codeshala.org](http://test.codeshala.org)
 
 
 

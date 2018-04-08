@@ -47,7 +47,8 @@ var batchSchema = mongoose.Schema({
 var courseRegistrationSchema = mongoose.Schema({
     phoneno: String,
     batch: String,
-    payment_status: String
+    payment_status: String,
+    referer: String
 });
 
 var studentSchema = mongoose.Schema({
@@ -129,7 +130,8 @@ module.exports = function (app) {
         var newRegistration = new Registration({
             phoneno: req.body.phoneno,
             batch: req.body.batch,
-            payment_status: 'CASH'
+            payment_status: 'CASH',
+            referer: req.body.referer
         });
         newRegistration.save(function (err, data) {
             if (err) console.error(err);
@@ -153,6 +155,16 @@ module.exports = function (app) {
                 })
             }
         })
+    });
+
+    app.get('/student/:phoneno', function (req, res) {
+        Student.findOne({phoneno: req.params.phoneno}, {_id: 0, first_name: 1, last_name: 1}, function (err, data) {
+            if (err) console.error(err);
+            if (data)
+                res.send(data);
+            else
+                res.send('No Student Found');
+        });
     });
 
     app.get('/admin/courses', require('connect-ensure-login').ensureLoggedIn(), function (req, res) {
@@ -346,7 +358,7 @@ module.exports = function (app) {
     });
 
     app.get('/admin/push', require('connect-ensure-login').ensureLoggedIn(), function (req, res) {
-        res.render('pages/admin-pushnotifications',{response:''});
+        res.render('pages/admin-pushnotifications', {response: ''});
     });
 
     app.post('/admin/push', require('connect-ensure-login').ensureLoggedIn(), function (req, res) {
@@ -377,7 +389,7 @@ module.exports = function (app) {
                         .then(success => console.log(success))
                         .catch(error => console.log(error));
                 }
-                res.render('pages/admin-pushnotifications',{response:'Push notifications are being delivered!!'});
+                res.render('pages/admin-pushnotifications', {response: 'Push notifications are being delivered!!'});
             }
         });
 
