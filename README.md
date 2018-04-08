@@ -25,3 +25,15 @@ We are community of programmers. Our community is lead by professionals who have
 * Staging Server (Develop Branch) : [codeshala.herokuapp.com](https://codeshala.herokuapp.com)
 
 
+
+### Installation
+This project requires [Node.js](https://nodejs.org/) v6+ to run.
+
+Clone this repo, install the dependencies and start the server.
+
+```sh
+$ npm install
+$ npm start
+```
+
+All the required configuration are available in the .env file
