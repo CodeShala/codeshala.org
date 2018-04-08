@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Push Notifications | Admin | Codeshala | Get Better At Programing By Joining The Best programing courses in
+        Delhi NCR</title>
+    <% include ../partials/header %>
+    <% include ../partials/metadata %>
+</head>
+<body>
+<% include ../partials/nav %>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3">
+            <% include ../partials/admin-menu %>
+        </div>
+        <div class="col-lg-9">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/admin">Admin Home</a></li>
+                    <li class="breadcrumb-item"><a href="/admin/push">Push Notifications</a></li>
+                </ol>
+            </nav>
+            <br/>
+            <div class="card">
+                <div class="card-header">
+                    Send Push Notifications
+                </div>
+                <div class="card-body">
+                    <% if (!response) { %>
+                    <% } else { %>
+                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                        <p><%= response %></p>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <% } %>
+                    <form method="post" action="/admin/push">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Title</label>
+                            <input type="text" name="title" class="form-control" id="formGroupExampleInput"
+                                   placeholder="e.g. Codeshala" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput2">Body</label>
+                            <input type="text" name="body" class="form-control" id="formGroupExampleInput2"
+                                   placeholder="e.g. Welcome coders!" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput2">Url</label>
+                            <input type="text" name="url" class="form-control" id="formGroupExampleInput2"
+                                   placeholder="e.g. http://codeshala.org" value="http://codeshala.org" required>
+                        </div>
+
+                        <input type="submit" class="btn btn-primary" value="Send Push">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>
+</body>
+
+<% include ../partials/footer-scripts %>
+
+</html>

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const webpush = require('web-push');
 
 //DB Connection Setup
 mongoose.connect(process.env.MLAB_DB_URI);
@@ -69,7 +70,12 @@ var feedbackSchema = mongoose.Schema({
     intern_at: String,
     visibilityHome: String,
     visibilityCourse: String
-})
+});
+
+var pushNotificationsRegistrationSchema = mongoose.Schema({
+    endpoint: String,
+    phoneno: String
+});
 
 //Model Setup
 var Course = mongoose.model('Course', CourseSchema);
@@ -78,7 +84,7 @@ var Batch = mongoose.model('Batch', batchSchema);
 var Registration = mongoose.model('Registration', courseRegistrationSchema);
 var Student = mongoose.model('Student', studentSchema);
 var Feedback = mongoose.model('feedback', feedbackSchema);
-
+var PushNotificationsRegistration = mongoose.model('PushNotificationsRegistration', pushNotificationsRegistrationSchema);
 
 module.exports = function (app) {
 
@@ -322,6 +328,61 @@ module.exports = function (app) {
         })
     });
 
+    app.post('/pushNotificationsRegistration', function (req, res) {
+        var newPushRegistration = new PushNotificationsRegistration({
+            endpoint: JSON.stringify(req.body.endpoint)
+        });
+        PushNotificationsRegistration.findOne({endpoint: JSON.stringify(req.body.endpoint)}, function (err, data) {
+            if (err) console.error(err);
+            if (!data) {
+                //console.log("--> "+data);
+                newPushRegistration.save(function (err, data) {
+                    if (err) console.error(err);
+                    res.send('Push Registered');
+                });
+            }
+        });
+
+    });
+
+    app.get('/admin/push', require('connect-ensure-login').ensureLoggedIn(), function (req, res) {
+        res.render('pages/admin-pushnotifications',{response:''});
+    });
+
+    app.post('/admin/push', require('connect-ensure-login').ensureLoggedIn(), function (req, res) {
+
+        //  const vapidKeys = webpush.generateVAPIDKeys();
+        //  console.log(vapidKeys.publicKey);
+        //  console.log(vapidKeys.privateKey);
+        //  process.exit();
+
+        webpush.setVapidDetails(
+            'mailto:vipin@codeshala.org',
+            'BE9vrCIh3D4eykUOA5t9jOWGZX4lOqhMWTmQdxcTHWwvXlWn-c7DKZRgRSG_XZXylg1ov5RrtKYLM22YaAAouVY',
+            'bN8RKqLGkGaHqQUqeUwHReKGoER8BQHtIs-sHiUYQyk'
+        );
+
+        const notification = JSON.stringify({
+            title: req.body.title,
+            body: req.body.body,
+            url: req.body.url
+        });
+
+        PushNotificationsRegistration.find({}, function (err, data) {
+            if (err) console.error(err);
+            if (data) {
+                for (index in data) {
+                    var endpoint = JSON.parse(data[index].endpoint);
+                    webpush.sendNotification(endpoint, notification)
+                        .then(success => console.log(success))
+                        .catch(error => console.log(error));
+                }
+                res.render('pages/admin-pushnotifications',{response:'Push notifications are being delivered!!'});
+            }
+        });
+
+    });
+
     app.get('/venueRegistration', require('connect-ensure-login').ensureLoggedIn(), function (req, res) {
         console.log(req.body);
         var newVenue = new Venue({
@@ -351,5 +412,6 @@ module.exports = function (app) {
         });
 
     });
+
 
 }

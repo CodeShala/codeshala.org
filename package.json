@@ -35,6 +35,7 @@
     "node-ga": "0.1.1",
     "passport": "0.4.0",
     "passport-local": "1.0.0",
-    "request": "2.85.0"
+    "request": "2.85.0",
+    "web-push": "3.3.0"
   }
 }

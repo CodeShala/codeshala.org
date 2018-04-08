@@ -154,7 +154,7 @@ module.exports = function (app) {
             res.render('pages/profile', {user: req.user});
         });
 
-    app.get('/push', function (req, res) {
-        res.render('push');
+    app.get('/notifications', function (req, res) {
+        res.render('pages/notificationsSubscription');
     })
 }
