@@ -31,30 +31,54 @@
                     <div class="row">
 
                         <% for(key in courses){ %>
-                        <div class="card border-info" style="margin:10px;">
-                            <div class="card-header"><%= courses[key].name %>
-                                <a class="dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                                   aria-haspopup="true" aria-expanded="false"></a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Edit</a>
-                                    <a class="dropdown-item" href="#">Delete</a>
-                                    <% if(courses[key].courseRegistrationStatus == "OPEN") { %>
-                                    <a class="dropdown-item" href="#">Close Registrations</a>
-                                    <% }else{ %>
-                                    <a class="dropdown-item" href="#">Open Registrations</a>
-                                    <% } %>
+                        <div class="col-lg-6">
+                            <div class="card" style="width: 18rem;margin:10px;">
+                                <!--<img class="card-img-top img-fluid" src="<%= courses[key].courseThumbnail %>"
+                                     alt="Course Thumbnail">-->
+                                <div class="card-body mx-auto">
+                                    <h5 class="card-title">
+                                        <img height="100px" src="<%= courses[key].courseThumbnail %>"
+                                             alt="Course Thumbnail">
+                                        <br/>
+                                        <%= courses[key].name %>
+                                    </h5>
+                                    <p class="card-text"></p>
                                 </div>
-                            </div>
-                            <div class="card-body text-info">
-                                <%= courses[key].courseRegistrationStatus %>
-                                |
-                                <%= courses[key].minsessions %> - <%= courses[key].maxsessions %> Sessions
-                                <br/>
-
+                                <div class="card-body">
+                                    <a href="#" class="card-link">Edit</a>
+                                    <a href="#" class="card-link">Hide</a>
+                                    <a href="#" class="card-link">Delete</a>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><b>Fees:</b> <%= courses[key].fees %></li>
+                                    <li class="list-group-item"><b>Sessions:</b> <%= courses[key].minsessions %>
+                                        - <%= courses[key].maxsessions %></li>
+                                    <li class="list-group-item"><b>Seats: </b> <%= courses[key].seats %></li>
+                                    <li class="list-group-item"><b>Currently Open Batches:</b>
+                                        <% if(batches){ %>
+                                        <ol>
+                                            <% for(index in batches){ %>
+                                            <% if(batches[index].course_alias === courses[key].alias){ %>
+                                            <li>
+                                                <a href="/admin/batch/registrations/<%= batches[index]._id %>"><%= batches[index].start_date %>
+                                                    - <%= batches[index].end_date %>
+                                                    @ <%= batches[index].venue %> [ <%= batches[index].visibility %>
+                                                    ]</a>
+                                                <br/>
+                                                <a href="/admin/batch/update/<%= batches[index]._id %>">Edit</a> | <a
+                                                        href="/admin/batch/hide/<%= batches[index]._id %>">Delete</a>
+                                            </li>
+                                            <% } %>
+                                            <% } %>
+                                        </ol>
+                                        <% }else{ %>
+                                        None
+                                        <% } %>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                         <% } %>
-
                     </div>
                 </div>
 

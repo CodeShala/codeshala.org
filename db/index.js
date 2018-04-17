@@ -171,7 +171,12 @@ module.exports = function (app) {
     app.get('/admin/courses', require('connect-ensure-login').ensureLoggedIn(), function (req, res) {
         Course.find({}, function (err, data) {
             if (err) console.error(err);
-            res.render('pages/admin-courses', {'courses': data});
+            else {
+                Batch.find({}, function (err, b_data) {
+                    if(err) console.error(err);
+                    res.render('pages/admin-courses', {'courses': data, 'batches':b_data});
+                })
+            }
         })
     });
 
