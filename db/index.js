@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const webpush = require('web-push');
 
+
 //DB Connection Setup
 mongoose.connect(process.env.MLAB_DB_URI);
 var db = mongoose.connection;
@@ -169,48 +170,43 @@ module.exports = function (app) {
     });
 
     app.get('/admin/courses', require('connect-ensure-login').ensureLoggedIn(), function (req, res) {
-        Course.find({}, function (err, data) {
+        Course.find({}, null, {sort: {viewIndex: 1}}, function (err, data) {
             if (err) console.error(err);
             else {
                 Batch.find({}, function (err, b_data) {
-                    if(err) console.error(err);
-                    res.render('pages/admin-courses', {'courses': data, 'batches':b_data});
-                })
-            }
-        })
-    });
-
-    app.get('/admin/batch', require('connect-ensure-login').ensureLoggedIn(), function (req, res) {
-        Batch.find({}, function (err, data) {
-            if (err) console.error(err);
-            else {
-                res.render('pages/admin-batch', {'batch': data});
-            }
-        })
-    });
-
-    app.get('/admin/batch/registrations/:batchId', require('connect-ensure-login').ensureLoggedIn(), function (req, res) {
-        studentsRegistered = [];
-        Registration.find({batch: req.params.batchId}, function (err, r_data) {
-            console.log("r_data len:" + r_data.length);
-            if (!r_data.length) {
-                res.render('pages/admin-batch-registrations', {'students': ''});
-            }
-            for (index in r_data) {
-                Student.findOne({phoneno: r_data[index].phoneno}, function (err, s_data) {
                     if (err) console.error(err);
-                    else {
-                        studentsRegistered.push(s_data);
-                    }
-                }).then(() => {
-                    if (index == r_data.length - 1) {
-                        console.log("INDEX: " + index);
-                        console.log(studentsRegistered);
-                        res.render('pages/admin-batch-registrations', {'students': studentsRegistered});
-                    }
+                    res.render('pages/admin-courses', {'courses': data, 'batches': b_data});
                 })
             }
         })
+    });
+
+    app.get('/admin/batch/registrations/:batchId/:courseName', require('connect-ensure-login').ensureLoggedIn(), function (req, res) {
+        batchId = req.params.batchId;
+        console.log("fetchRegistrationsForBatch");
+        Registration.find({batch: batchId}).lean()
+            .then(function (r_data) {
+
+                console.log("r_data len:" + r_data.length);
+                console.log("fetchProfileDetails");
+                studentsRegistered = [];
+                registrationsData=r_data;
+
+                for (index in registrationsData) {
+                    console.log("Searching for index: "+index);
+                    Student.findOne({phoneno: registrationsData[index].phoneno}).lean().then(function (s_data) {
+                        console.log(s_data);
+                        studentsRegistered.push(s_data);
+                        if (studentsRegistered.length === registrationsData.length) {
+                            //res.send(studentsRegistered);
+                            res.render('pages/admin-batch-registrations',{students:studentsRegistered,courseName:req.params.courseName});
+                        }
+
+                    });
+                }
+
+            })
+
     });
 
     app.get('/admin/batch/update/:batchId', require('connect-ensure-login').ensureLoggedIn(), function (req, res) {
@@ -260,19 +256,16 @@ module.exports = function (app) {
         })
     });
 
-    app.get('/admin/batch/add', require('connect-ensure-login').ensureLoggedIn(), function (req, res) {
+    app.get('/admin/batch/add/:courseAlias', require('connect-ensure-login').ensureLoggedIn(), function (req, res) {
         Venue.find({}, function (err, v_data) {
             if (err) console.error(err);
-            Course.find({}, function (err, c_data) {
-                if (err) console.error(err);
-                res.render('pages/admin-add-batch', {
-                    'batch': '',
-                    'response': '',
-                    'venue': v_data,
-                    'course': c_data,
-                    response: ""
-                });
-            })
+            res.render('pages/admin-add-batch', {
+                'batch': '',
+                'response': '',
+                'venue': v_data,
+                'course': [{alias: req.params.courseAlias, name: req.params.courseAlias}],
+                response: ""
+            });
         })
     });
 

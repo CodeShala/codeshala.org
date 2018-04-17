@@ -22,7 +22,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/admin">Admin Home</a></li>
-                    <li class="breadcrumb-item"><a href="/admin/batch">All Batches</a></li>
+                    <li class="breadcrumb-item"><a href="/admin/courses">All Courses</a></li>
                     <% if(batch){ %>
                     <li class="breadcrumb-item"><a href="">Edit Batch</a></li>
                     <% }else{ %>
@@ -52,7 +52,7 @@
                     <% if(batch){ %>
                     <form method="post" action="/admin/batch/update/<%= batch._id %>">
                         <% }else{ %>
-                        <form method="post" action="/admin/batch/add">
+                        <form method="post" action="/admin/batch/add/<%= batch.course_alias %>">
                             <% } %>
 
                             <div class="form-group">
