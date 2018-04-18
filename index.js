@@ -21,7 +21,7 @@ app.set('view engine', 'ejs');
 
 //Route to handle 404 
 app.get('/*', function (req, res) {
-    res.send("404 | Page Not Found<br/>This website is still under development")
+    res.render('pages/404');
 });
 
 //Spinning our server up

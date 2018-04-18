@@ -43,7 +43,7 @@
                                         <img height="100px" src="<%= courses[key].courseThumbnail %>"
                                              alt="Course Thumbnail">
                                         <br/>
-                                        <%= courses[key].name %>
+                                        <a href="/course/<%= courses[key].alias %>" target="new"><%= courses[key].name %></a>
                                     </h5>
                                     <p class="card-text"></p>
                                 </div>
@@ -68,8 +68,9 @@
                                                 <a href="/admin/batch/registrations/<%= batches[index]._id %>/<%= courses[key].name %>"><%= batches[index].start_date %>
                                                     - <%= batches[index].end_date %>
                                                     @ <%= batches[index].venue %> [ <%= batches[index].visibility %>
-                                                    ]</a>
+                                                    ]
                                                 <br/>
+                                                Registrations</a> |
                                                 <a href="/admin/batch/update/<%= batches[index]._id %>">Edit</a> | <a
                                                         href="/admin/batch/hide/<%= batches[index]._id %>">Delete</a>
                                             </li>
