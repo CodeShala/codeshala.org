@@ -33,6 +33,7 @@
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
+                                <% if(students){%>
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">First Name</th>
@@ -42,6 +43,10 @@
                                     <th scope="col">Branch</th>
                                     <th scope="col">Passing Year</th>
                                 </tr>
+                                <%}else{%>
+                                No registrations found for this batch
+                                <%}%>
+
                                 </thead>
                                 <tbody>
                                 <% for(index in students){ %>

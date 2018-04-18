@@ -128,6 +128,26 @@ module.exports = function (app) {
         });
     });
 
+    //5ad793af9ebea21848a9a0d5
+    app.get('/invite/course/:alias/:batch', function (req, res) {
+        Course.findOne({'alias': req.params.alias}, function (err, c_data) {
+            if (err)
+                console.error(err);
+            else {
+                Batch.find({_id:req.params.batch}, function (err, b_data) {
+                    if (err) console.error(err);
+                    else {
+                        console.log(b_data);
+                        Feedback.find({}, function (err, f_data) {
+                            if (err) console.error(err);
+                            res.render('pages/course', {course: c_data, batch: b_data, feedbacks: f_data});
+                        })
+                    }
+                })
+            }
+        });
+    });
+
     app.post('/course/register', function (req, res) {
         var newRegistration = new Registration({
             phoneno: req.body.phoneno,
@@ -186,24 +206,32 @@ module.exports = function (app) {
         console.log("fetchRegistrationsForBatch");
         Registration.find({batch: batchId}).lean()
             .then(function (r_data) {
+                if (r_data.length) {
+                    studentsRegistered = [];
+                    registrationsData = r_data;
+                    for (index in registrationsData) {
+                        console.log("Searching for index: " + index);
+                        Student.findOne({phoneno: registrationsData[index].phoneno}).lean().then(function (s_data) {
+                            console.log(s_data);
+                            studentsRegistered.push(s_data);
+                            if (studentsRegistered.length === registrationsData.length) {
+                                //res.send(studentsRegistered);
+                                res.render('pages/admin-batch-registrations', {
+                                    students: studentsRegistered,
+                                    courseName: req.params.courseName
+                                });
+                            }
 
-                console.log("r_data len:" + r_data.length);
-                console.log("fetchProfileDetails");
-                studentsRegistered = [];
-                registrationsData=r_data;
-
-                for (index in registrationsData) {
-                    console.log("Searching for index: "+index);
-                    Student.findOne({phoneno: registrationsData[index].phoneno}).lean().then(function (s_data) {
-                        console.log(s_data);
-                        studentsRegistered.push(s_data);
-                        if (studentsRegistered.length === registrationsData.length) {
-                            //res.send(studentsRegistered);
-                            res.render('pages/admin-batch-registrations',{students:studentsRegistered,courseName:req.params.courseName});
-                        }
-
+                        });
+                    }
+                } else {
+                    res.render('pages/admin-batch-registrations', {
+                        students: '',
+                        courseName: req.params.courseName
                     });
+
                 }
+
 
             })
 
@@ -230,11 +258,11 @@ module.exports = function (app) {
         console.log(req.body);
         Batch.findOneAndUpdate({_id: req.params.batchId}, {
             start_date: req.body.start_date,
-            end_date: req.body.end_date, venue: req.body.venue, intake: req.body.intake
+            end_date: req.body.end_date, venue: req.body.venue, intake: req.body.intake, visibility: req.body.visibility
         }, function (err, data) {
             if (err) console.error(err);
             console.log(data);
-            res.redirect('/admin/batch');
+            res.redirect('/admin/courses');
         })
     });
 
@@ -276,7 +304,7 @@ module.exports = function (app) {
             end_date: req.body.end_date,
             venue: req.body.venue,
             intake: req.body.intake,
-            visibility: 'public'
+            visibility: req.body.visibility
         });
         newBatch.save(function (err, data) {
             if (err) return console.error(err);

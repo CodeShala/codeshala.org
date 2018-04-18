@@ -67,8 +67,7 @@
                                             <li>
                                                 <a href="/admin/batch/registrations/<%= batches[index]._id %>/<%= courses[key].name %>"><%= batches[index].start_date %>
                                                     - <%= batches[index].end_date %>
-                                                    @ <%= batches[index].venue %> [ <%= batches[index].visibility %>
-                                                    ]
+                                                    @ <%= batches[index].venue %> [<% if(batches[index].visibility=="public"){%>Registrations Open<% }else if(batches[index].visibility=="hidden"){%>Registrations Closed<%}%>]
                                                 <br/>
                                                 Registrations</a> |
                                                 <a href="/admin/batch/update/<%= batches[index]._id %>">Edit</a> | <a

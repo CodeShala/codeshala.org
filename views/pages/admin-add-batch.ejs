@@ -50,7 +50,7 @@
                     <% } %>
 
                     <% if(batch){ %>
-                    <form method="post" action="/admin/batch/update/<%= batch._id %>">
+                    <form method="post" name="add-batch-form" action="/admin/batch/update/<%= batch._id %>">
                         <% }else{ %>
                         <form method="post" action="/admin/batch/add/<%= batch.course_alias %>">
                             <% } %>
@@ -101,8 +101,15 @@
                             <div class="form-group">
                                 <label for="formGroupExampleInput2">Intake</label>
                                 <input type="text" name="intake" class="form-control" id="formGroupExampleInput2"
-                                       placeholder="e.g. 20" <% if(batch){ %>value="<%= batch.intake %>"
-                                <% } %>>
+                                       placeholder="e.g. 20" <% if(batch){ %>value="<%= batch.intake %>"<% } %>>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="formGroupExampleInput2">Visibility</label>
+                                <select name="visibility" class="form-control">
+                                    <option value="public" <% if(batch.visibility=="public"){ %>selected<% } %>>Open For Registrations For Public</option>
+                                    <option value="hidden" <% if(batch.visibility=="hidden"){ %>selected <% } %>>Closed For Registrations For Public</option>
+                                </select>
                             </div>
                             <br/>
                             <% if(batch){ %>
