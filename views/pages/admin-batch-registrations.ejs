@@ -36,12 +36,14 @@
                                 <% if(students){%>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">First Name</th>
-                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Phone No</th>
+                                    <th scope="col">Email</th>
                                     <th scope="col">DOB</th>
                                     <th scope="col">College</th>
                                     <th scope="col">Branch</th>
                                     <th scope="col">Passing Year</th>
+                                    <th scope="col">Referer</th>
                                 </tr>
                                 <%}else{%>
                                 No registrations found for this batch
@@ -52,12 +54,14 @@
                                 <% for(index in students){ %>
                                 <tr>
                                     <th scope="row"><%= index %></th>
-                                    <td><%= students[index].first_name %></td>
-                                    <td><%= students[index].last_name %></td>
+                                    <td><%= students[index].first_name %> <%= students[index].last_name %></td>
+                                    <td><%= students[index].phoneno %></td>
+                                    <td><%= students[index].email %></td>
                                     <td><%= students[index].dob %></td>
                                     <td><%= students[index].college %></td>
                                     <td><%= students[index].branch %></td>
                                     <td><%= students[index].year_passing %></td>
+                                    <td><%= referer[index] %></td>
                                 </tr>
                                 <% } %>
                                 </tbody>

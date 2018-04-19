@@ -208,17 +208,19 @@ module.exports = function (app) {
             .then(function (r_data) {
                 if (r_data.length) {
                     studentsRegistered = [];
+                    refererArr = [];
                     registrationsData = r_data;
                     for (index in registrationsData) {
-                        console.log("Searching for index: " + index);
+                        refererArr.push(registrationsData[index].referer);
                         Student.findOne({phoneno: registrationsData[index].phoneno}).lean().then(function (s_data) {
-                            console.log(s_data);
+                           // console.log(s_data);
                             studentsRegistered.push(s_data);
                             if (studentsRegistered.length === registrationsData.length) {
                                 //res.send(studentsRegistered);
                                 res.render('pages/admin-batch-registrations', {
                                     students: studentsRegistered,
-                                    courseName: req.params.courseName
+                                    courseName: req.params.courseName,
+                                    referer : refererArr
                                 });
                             }
 

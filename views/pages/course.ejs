@@ -75,9 +75,10 @@
         // login callback
         function loginCallback(response) {
             if (response.status === "PARTIALLY_AUTHENTICATED") {
-                var code = response.code;
-                var csrf = response.state;
-                console.log(code + " " + csrf);
+                //var code = response.code;
+                //var csrf = response.state;
+                //console.log(code);
+                //console.log(csrf);
 
                 $('#registration-alert-danger').show();
                 $('#registration-alert-danger').removeClass('alert-danger');
@@ -114,7 +115,7 @@
 <div class="container-fluid codeshala-banner">
     <div class="container text-center codeshala-course-heading">
         <h1>
-            <img src="<%= course.courseThumbnail %>" height="100px">
+            <img src="<%= -course.courseThumbnail %>" height="100px">
             <%= course.name %><br/>
             <span class="text-center codeshala-theme codeshala-course-card-btn">
                 <% if(batch.length){ %>
