@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <title>Student Login | Codeshala | Get Better At Programing By Joining The Best programing courses in
+        Delhi NCR</title>
+    <% include ../partials/header %>
+    <% include ../partials/metadata %>
+
+</head>
+<body>
+<% include ../partials/nav %>
+<div class="container-fluid codeshala-banner">
+    <div class="container text-center codeshala-course-heading">
+    	<div class="row">
+    		<div class="col-lg-6 mx-auto">  
+        		<h1>
+            		Student Login<br/>
+        		</h1>
+        		<br/>
+
+        		<form method="post" action="../studentlogin">
+  					<div class="form-label-group">
+                        <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email Address" required="" autofocus="">
+                        <label for="inputEmail">Email Address</label>
+                    </div>
+  					<div class="form-label-group">
+                        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required="">
+                        <label for="inputPassword">Password</label>
+                    </div>			
+	            	<div class="form-label-group">
+            		    <button type="submit" class="btn btn-secondary col-3" id="student-login" class="form-control">Sign in</button>
+	            	</div>
+				</form>
+	        	<br/><br/>
+	    	</div>
+	    </div>
+    </div>
+</div>
+
+</div>
+<div class="container-fluid codeshala-placements" id="placements">
+    <div class="container">
+        <h3 class="text-light text-center font-weight-bold">
+            Confused on which course you should choose?<br/>
+            <span class="text-center codeshala-theme codeshala-course-card-btn">
+					<a href="/courses/node-js" class="text-light">
+						Try our course finder tool
+						<i class="fa fa-arrow-right"></i>
+					</a>
+				</span>
+
+        </h3>
+    </div>
+</div>
+<% include ../partials/footer %>
+</body>
+
+<% include ../partials/footer-scripts %>
+<script src="/assets/js/registration.js"></script>
+
+</html>

@@ -456,5 +456,17 @@ module.exports = function (app) {
 
     });
 
+    app.get('/studentlogin', function(req, res) {
+
+        res.render('pages/student-login');
+    });
+
+    app.post('/studentlogin', function(req, res) {
+
+        var email = req.body.email;
+        var password = req.body.password;
+        res.redirect('/');
+    });
+
 
 }
