@@ -1,47 +1,99 @@
 <!doctype html>
 <html lang="en">
 <head>
-
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-    <title>Student Login | Codeshala | Get Better At Programing By Joining The Best programing courses in
+    <title>Login | Codeshala | Get Better At Programing By Joining The Best programing courses in
         Delhi NCR</title>
     <% include ../partials/header %>
     <% include ../partials/metadata %>
+    <script src="https://sdk.accountkit.com/en_US/sdk.js"></script>
 
+    <script type="text/javascript">
+        // initialize Account Kit with CSRF protection
+        AccountKit_OnInteractive = function () {
+            AccountKit.init(
+                {
+                    appId: "348992692256013",
+                    state: "poiuycgh",
+                    version: "v1.1",
+                    fbAppEventsEnabled: true,
+                    redirect: "http://codeshala.org/success",
+                    debug: "true"
+                }
+            );
+        };
+
+
+        // phone form submission handler
+        function smsLogin() {
+            var countryCode = document.getElementById("country_code").value;
+            var phoneNumber = document.getElementById("phone_number").value;
+            AccountKit.login(
+                'PHONE',
+                {countryCode: countryCode, phoneNumber: phoneNumber}, // will use default values if not specified
+                loginCallback
+            );
+        }
+
+
+        // email form submission handler
+        function emailLogin() {
+            var emailAddress = document.getElementById("email").value;
+            AccountKit.login(
+                'EMAIL',
+                {emailAddress: emailAddress},
+                loginCallback
+            );
+        }
+
+        // login callback
+        function loginCallback(response) {
+            if (response.status === "PARTIALLY_AUTHENTICATED") {
+                document.getElementById('token').value = response.code;
+                document.getElementById('studentLoginForm').submit();
+                //var csrf = response.state;
+                //console.log(code);
+                //console.log(csrf);
+
+            }
+            else if (response.status === "NOT_AUTHENTICATED") {
+                console.log("NA");
+            }
+            else if (response.status === "BAD_PARAMS") {
+                // handle bad parameters
+                console.log("BP");
+            }
+        }
+    </script>
 </head>
 <body>
 <% include ../partials/nav %>
-<div class="container-fluid codeshala-banner">
-    <div class="container text-center codeshala-course-heading">
-    	<div class="row">
-    		<div class="col-lg-6 mx-auto">  
-        		<h1>
-            		Student Login<br/>
-        		</h1>
-        		<br/>
-
-        		<form method="post" action="../studentlogin">
-  					<div class="form-label-group">
-                        <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email Address" required="" autofocus="">
-                        <label for="inputEmail">Email Address</label>
-                    </div>
-  					<div class="form-label-group">
-                        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required="">
-                        <label for="inputPassword">Password</label>
-                    </div>			
-	            	<div class="form-label-group">
-            		    <button type="submit" class="btn btn-secondary col-3" id="student-login" class="form-control">Sign in</button>
-	            	</div>
-				</form>
-	        	<br/><br/>
-	    	</div>
-	    </div>
+<div class="container text-center">
+    <div class="row">
+        <div class="col-lg-5 mx-auto">
+            <h3>
+                Login to your <br/>Codeshala Account<br/>
+            </h3>
+            <br/>
+            <div class="form-group">
+                <label>Enter Your Mobile Number</label>
+                <input value="+91" id="country_code" hidden/>
+                <input type="text" placeholder="10 digit phone number" id="phone_number" name="phoneno"
+                       class="form-control" maxlength="10" minlength="10" required>
+                <div class="valid-feedback" id="message-correct-otp">
+                    Looks good! Click on send OTP to verify your phone number
+                </div>
+                <div class="invalid-feedback" id="message-incorrect-otp">
+                    Please correct your phone number.
+                </div>
+            </div>
+            <button class="btn btn-primary" onclick="smsLogin();" id="getOTP" disabled>Login</button>
+            <br/><br/>
+        </div>
     </div>
 </div>
-
+<form action="/studentlogin" method="post" id="studentLoginForm">
+    <input type="text" id="token" name="token" hidden/>
+</form>
 </div>
 <div class="container-fluid codeshala-placements" id="placements">
     <div class="container">

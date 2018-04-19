@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const webpush = require('web-push');
-
+const Request = require('request');
 
 //DB Connection Setup
 mongoose.connect(process.env.MLAB_DB_URI);
@@ -134,7 +134,7 @@ module.exports = function (app) {
             if (err)
                 console.error(err);
             else {
-                Batch.find({_id:req.params.batch}, function (err, b_data) {
+                Batch.find({_id: req.params.batch}, function (err, b_data) {
                     if (err) console.error(err);
                     else {
                         console.log(b_data);
@@ -213,14 +213,14 @@ module.exports = function (app) {
                     for (index in registrationsData) {
                         refererArr.push(registrationsData[index].referer);
                         Student.findOne({phoneno: registrationsData[index].phoneno}).lean().then(function (s_data) {
-                           // console.log(s_data);
+                            // console.log(s_data);
                             studentsRegistered.push(s_data);
                             if (studentsRegistered.length === registrationsData.length) {
                                 //res.send(studentsRegistered);
                                 res.render('pages/admin-batch-registrations', {
                                     students: studentsRegistered,
                                     courseName: req.params.courseName,
-                                    referer : refererArr
+                                    referer: refererArr
                                 });
                             }
 
@@ -458,17 +458,33 @@ module.exports = function (app) {
 
     });
 
-    app.get('/studentlogin', function(req, res) {
-
+    app.get('/studentlogin', function (req, res) {
         res.render('pages/student-login');
     });
 
-    app.post('/studentlogin', function(req, res) {
-
-        var email = req.body.email;
-        var password = req.body.password;
-        res.redirect('/');
+    app.post('/studentlogin', function (req, res) {
+        if (!req.body.token) {
+            res.redirect('/studentlogin');
+        } else {
+            code = req.body.token;
+            var app_access_token = 'AA|348992692256013|' + process.env.ACCOUNTKIT_SECRET;
+            token_exchange_base_url = 'https://graph.accountkit.com/v1.1/access_token';
+            var token_exchange_url = token_exchange_base_url + '?grant_type=authorization_code&code=' + code + '&access_token=' + app_access_token;
+            Request.get({url: token_exchange_url, json: true}, function (err, resp, respBody) {
+                if (!respBody.access_token) {
+                    res.redirect('/studentlogin');
+                }
+                var me_endpoint_url = 'https://graph.accountkit.com/v1.1/me' + '?access_token=' + respBody.access_token;
+                Request.get({url: me_endpoint_url, json: true}, function (err, resp, respBody) {
+                    if (respBody.phone) {
+                        res.send(respBody.phone.national_number);
+                    } else if (respBody.email) {
+                        res.send(respBody.email);
+                    } else {
+                        res.redirect('/studentlogin');
+                    }
+                });
+            });
+        }
     });
-
-
-}
+};

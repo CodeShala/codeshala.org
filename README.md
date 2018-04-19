@@ -17,6 +17,7 @@ We are community of programmers. Our community is lead by professionals who have
 | MLAB_DB_URI | MongoDB URI |
 | ADMIN_USERNAME | Username for admin access routes |
 | ADMIN_PASSWORD | Password for admin access routes |
+| ACCOUNTKIT_SECRET | [Account Kit](https://accountkit.com/) App Secret Key |
 
 
 ### Hosting Server
