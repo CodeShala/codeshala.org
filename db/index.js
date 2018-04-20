@@ -477,7 +477,9 @@ module.exports = function (app) {
                 var me_endpoint_url = 'https://graph.accountkit.com/v1.1/me' + '?access_token=' + respBody.access_token;
                 Request.get({url: me_endpoint_url, json: true}, function (err, resp, respBody) {
                     if (respBody.phone) {
-                        res.send(respBody.phone.national_number);
+                        //res.send(respBody.phone.national_number);
+                        //res.render('pages/student-home',{phoneno: respBody.phone.national_number});
+                        res.redirect('/home');
                     } else if (respBody.email) {
                         res.send(respBody.email);
                     } else {
@@ -489,6 +491,6 @@ module.exports = function (app) {
     });
 
     app.get('/home', function(req, res) {
-        res.render('pages/student-home');
+        res.render('pages/student-home',{phoneno: '9643763712'});
     });
 };

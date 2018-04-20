@@ -8,6 +8,22 @@
 [![CODESHALA](http://codeshala.org/assets/images/site_logo.png)](http://codeshala.org/assets/images/site_logo.png)
 We are community of programmers. Our community is lead by professionals who have broad experience in competitve programming and software development. Our community mentors are working at top companies and providing mentorship to candidates across different colleges.
 
+### Technology Stack
+
+| Name | Description |
+| ------ | ------ |
+| HTML/CSS | Frontend |
+| Bootstrap CSS | CSS Framework |
+| Jquery | Javascript Library|
+| Node.Js | Backend Server |
+| Express | Routing |
+| EJS | Rendering |
+| MongoDB | Database |
+| Google Analytics | Analytics |
+| PassportJs | Authentication |
+| Facebook AccountKit | SMS OTP Based Login |
+
+
 
 ### Environment Details
 
@@ -38,3 +54,12 @@ $ npm start
 ```
 
 All the required configuration are available in the .env file
+
+### Report Bugs / Suggest new features
+To report bug or suggest a new feature, raise an issue at [Issues](https://github.com/CodeShala/codeshala.org/issues)
+
+### Contributors
+
+| Name |
+| ------ |
+| [Paras Aggarwal](https://github.com/paras-aggarwal/) |
