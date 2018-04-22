@@ -1,8 +1,30 @@
+<style>
+    .blink {
+        animation: blink-animation 1s steps(3, start) infinite;
+        -webkit-animation: blink-animation 1s steps(3, start) infinite;
+        color: #fd8900;
+    }
+
+    @keyframes blink-animation {
+        to {
+            visibility: hidden;
+        }
+    }
+
+    @-webkit-keyframes blink-animation {
+        to {
+            visibility: hidden;
+        }
+    }
+</style>
 <h3>Menu</h3>
 <br/>
 <ul class="list-group">
     <a href="/admin">
         <li class="list-group-item">Home</li>
+    </a>
+    <a href="/admin/push">
+        <li class="list-group-item">Push Notifications <span class="blink">[New]</span></li>
     </a>
     <a href="/admin/courses">
         <li class="list-group-item">Courses</li>
@@ -15,9 +37,6 @@
     </a>
     <a href="/admin/payments">
         <li class="list-group-item"><s>Payments</s></li>
-    </a>
-    <a href="/admin/push">
-        <li class="list-group-item"><s>Push Notifications</s></li>
     </a>
     <a href="/logout">
         <li class="list-group-item">Logout</li>

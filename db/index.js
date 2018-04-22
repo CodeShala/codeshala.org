@@ -391,7 +391,11 @@ module.exports = function (app) {
     });
 
     app.get('/admin/push', require('connect-ensure-login').ensureLoggedIn(), function (req, res) {
-        res.render('pages/admin-pushnotifications', {response: ''});
+        let coll = db.collection('pushnotificationsregistrations');
+        coll.count().then((count) => {
+            console.log(count);
+            res.render('pages/admin-pushnotifications', {response: '', count: count});
+        });
     });
 
     app.post('/admin/push', require('connect-ensure-login').ensureLoggedIn(), function (req, res) {
@@ -422,7 +426,7 @@ module.exports = function (app) {
                         .then(success => console.log(success))
                         .catch(error => console.log(error));
                 }
-                res.render('pages/admin-pushnotifications', {response: 'Push notifications are being delivered!!'});
+                res.render('pages/admin-pushnotifications', {response: 'Push notifications are being delivered!!', count: 'respective'});
             }
         });
 
@@ -490,7 +494,7 @@ module.exports = function (app) {
         }
     });
 
-    app.get('/home', function(req, res) {
-        res.render('pages/student-home',{phoneno: '9643763712'});
+    app.get('/home', function (req, res) {
+        res.render('pages/student-home', {phoneno: '9643763712'});
     });
 };

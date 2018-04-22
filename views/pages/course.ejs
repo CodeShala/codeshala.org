@@ -114,9 +114,9 @@
 <% include ../partials/nav %>
 <div class="container-fluid codeshala-banner">
     <div class="container text-center codeshala-course-heading">
-        <h1>
-            <img src="<%= course.courseThumbnail %>" height="100px">
-            <%= course.name %><br/>
+
+            <img src="<%= course.courseThumbnail %>" height="80px"><br/>
+            <b><%= course.name %></b><br/>
             <span class="text-center codeshala-theme codeshala-course-card-btn">
                 <% if(batch.length){ %>
                 Batches open for registration:<br/>
@@ -127,7 +127,7 @@
                 Registrations Closed
                 <% } %>
             </span>
-        </h1>
+
         <br/>
         <p><%= course.description %></p>
         <br/><br/><br/>
@@ -341,8 +341,11 @@
     </div>
 </div>
 <% include ../partials/footer %>
+<button class="expanded large button js-button" disabled style="display:none">Enable Push Notifications</button>
+<pre class="js-subscription" style="display:none"></pre>
 </body>
 
 <% include ../partials/footer-scripts %>
 <script src="/assets/js/registration.min.js"></script>
+<script src="/client.js"></script>
 </html>

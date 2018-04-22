@@ -304,6 +304,7 @@
 
         var $button = document.querySelector('.js-button');
         var activated = false;
+        _push2.default.subscribe();
         $button.addEventListener('click', function () {
             if (!activated) {
                 $button.disabled = true;
