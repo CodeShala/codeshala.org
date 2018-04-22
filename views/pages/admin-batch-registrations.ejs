@@ -5,6 +5,35 @@
         in Delhi NCR</title>
     <% include ../partials/header %>
     <% include ../partials/metadata %>
+    <script>
+        function csvCopy() {
+            var copyText = document.getElementById("csvEmails").value;
+            console.log(copyText);
+            copyToClipboard(copyText);
+            alert('Emails Listed Below Have Been Copied To Your Clipboard, Use Ctrl+v to paste them somewhere.');
+        }
+        function copyToClipboard(text) {
+            if (window.clipboardData && window.clipboardData.setData) {
+                // IE specific code path to prevent textarea being shown while dialog is visible.
+                return clipboardData.setData("Text", text);
+
+            } else if (document.queryCommandSupported && document.queryCommandSupported("copy")) {
+                var textarea = document.createElement("textarea");
+                textarea.textContent = text;
+                textarea.style.position = "fixed";  // Prevent scrolling to bottom of page in MS Edge.
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    return document.execCommand("copy");  // Security exception may be thrown by some browsers.
+                } catch (ex) {
+                    console.warn("Copy to clipboard failed.", ex);
+                    return false;
+                } finally {
+                    document.body.removeChild(textarea);
+                }
+            }
+        }
+    </script>
 </head>
 <body>
 <% include ../partials/nav %>
@@ -25,6 +54,8 @@
             <div class="card">
                 <div class="card-header">
                     View Registrations For <u><%= courseName %></u>
+                    <input type="text" id="csvEmails" value="<% for(index in students){ %><%= students[index].email %><% if(index < students.length-1){ %>,<% } %><% } %>" hidden>
+                    <button type="button" class="btn btn-primary float-right"  onclick="csvCopy()" >Copy Emails</button>
                 </div>
 
 
@@ -33,7 +64,7 @@
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
-                                <% if(students){%>
+                                <% if(students){ %>
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Name</th>
@@ -45,9 +76,9 @@
                                     <th scope="col">Passing Year</th>
                                     <th scope="col">Referer</th>
                                 </tr>
-                                <%}else{%>
+                                <% }else{ %>
                                 No registrations found for this batch
-                                <%}%>
+                                <% } %>
 
                                 </thead>
                                 <tbody>
@@ -80,5 +111,4 @@
 </body>
 
 <% include ../partials/footer-scripts %>
-
 </html>
