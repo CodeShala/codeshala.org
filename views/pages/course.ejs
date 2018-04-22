@@ -115,7 +115,7 @@
 <div class="container-fluid codeshala-banner">
     <div class="container text-center codeshala-course-heading">
         <h1>
-            <img src="<%= -course.courseThumbnail %>" height="100px">
+            <img src="<%= course.courseThumbnail %>" height="100px">
             <%= course.name %><br/>
             <span class="text-center codeshala-theme codeshala-course-card-btn">
                 <% if(batch.length){ %>
@@ -344,5 +344,5 @@
 </body>
 
 <% include ../partials/footer-scripts %>
-<script src="/assets/js/registration.js"></script>
+<script src="/assets/js/registration.min.js"></script>
 </html>
