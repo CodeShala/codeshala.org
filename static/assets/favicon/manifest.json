@@ -1,7 +1,7 @@
 {
  "name": "Codeshala",
  "short_name": "Codeshala",
- "start_url": ".",
+ "start_url": "\/",
  "display": "standalone",
  "background_color": "#f3f3f3",
  "theme_color": "#f3f3f3",
