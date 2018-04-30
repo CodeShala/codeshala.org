@@ -80,6 +80,19 @@ var pushNotificationsRegistrationSchema = mongoose.Schema({
     phoneno: String
 });
 
+var hackerearthContestSchema = mongoose.Schema({
+    testid: Number,
+    name: String
+});
+
+var leaderboardSchema = mongoose.Schema({
+    test_id: Number,
+    candidate_name: String,
+    candidate_total_score: Number,
+    email: String,
+    candidate_id: Number
+});
+
 //Model Setup
 var Course = mongoose.model('Course', CourseSchema);
 var Venue = mongoose.model('Venue', venueSchema);
@@ -88,6 +101,8 @@ var Registration = mongoose.model('Registration', courseRegistrationSchema);
 var Student = mongoose.model('Student', studentSchema);
 var Feedback = mongoose.model('feedback', feedbackSchema);
 var PushNotificationsRegistration = mongoose.model('PushNotificationsRegistration', pushNotificationsRegistrationSchema);
+var HackerearthContest = mongoose.model('hackerearthContest', hackerearthContestSchema);
+var Leaderboard = mongoose.model('leaderboard', leaderboardSchema);
 
 module.exports = function (app) {
 
@@ -426,7 +441,10 @@ module.exports = function (app) {
                         .then(success => console.log(success))
                         .catch(error => console.log(error));
                 }
-                res.render('pages/admin-pushnotifications', {response: 'Push notifications are being delivered!!', count: 'respective'});
+                res.render('pages/admin-pushnotifications', {
+                    response: 'Push notifications are being delivered!!',
+                    count: 'respective'
+                });
             }
         });
 
@@ -497,4 +515,147 @@ module.exports = function (app) {
     app.get('/home', function (req, res) {
         res.render('pages/student-home', {phoneno: '9643763712'});
     });
+
+    app.get('/admin/hackerearth', require('connect-ensure-login').ensureLoggedIn(), function (req, res) {
+        HackerearthContest.find({}, function (err, test_data) {
+            var count = {};
+            if (err) console.error(err);
+            else {
+                res.render('pages/admin-hetest', {response: '', contests: test_data,count:''});
+            }
+        });
+    });
+
+    app.post('/admin/hackerearth', require('connect-ensure-login').ensureLoggedIn(), function (req, res) {
+        if (req.body.testid && req.body.testid != "") {
+            HackerearthContest.find({testid: req.body.testid}, function (err, data) {
+                if (data && data.length) {
+                    res.render('pages/admin-hetest', {response: 'This test has already been added'});
+                } else {
+                    let newHackerearthContest = new HackerearthContest({testid: req.body.testid, name: req.body.name});
+                    newHackerearthContest.save(function (err, data) {
+                        if (err) console.error(err);
+                        else {
+                            res.redirect('/sync/'+req.body.testid);
+                            //res.render('pages/admin-hetest', {response: req.body.name + ' Contest Added and data sync is on!'});
+                        }
+
+
+                    });
+                }
+            });
+        } else {
+            res.render('pages/admin-hetest', {response: 'Some Params Missing'});
+        }
+
+    });
+
+    app.get('/sync/:testid', require('connect-ensure-login').ensureLoggedIn(), function (req, res) {
+        Request({
+            url: "https://api.hackerearth.com/recruiter/v1/tests/test_report/",
+            method: "POST",
+            json: {
+                "client_id": process.env.HACKEREARTH_RECRUITER_CLIENTID,
+                "client_secret": process.env.HACKEREARTH_RECRUITER_SECRET,
+                "test_id": req.params.testid
+            }
+        }, function optionalCallback(err, httpResponse, body) {
+            if (err) {
+                console.error(err);
+            } else {
+                if (body.mcode === "SUCCESS") {
+                    let completed_test = body.report.completed_test;
+                    let currently_taking = body.report.currently_taking;
+                    if (completed_test != null) {
+                        console.log("completed_test SIZES: " + completed_test.length);
+                        console.log('Starting completed_test');
+                        for (entries in completed_test) {
+                            var entry = completed_test[entries];
+                            Leaderboard.findOneAndUpdate({
+                                    test_id: req.params.testid,
+                                    candidate_name: entry.candidate_name,
+                                    email: entry.email,
+                                    candidate_id: entry.candidate_id
+                                }, {
+                                    candidate_total_score: entry.candidate_total_score
+                                }, {
+                                    new: true,
+                                    upsert: true
+                                }, function (err, data) {
+                                    if (err) console.error(err);
+                                    //else
+                                        //console.log('Saved Or Updated: ' + data);
+                                }
+                            );
+                        }
+                    }
+                    if (currently_taking != null) {
+                        console.log("currently_taking SIZES: " + currently_taking.length);
+                        console.log('Starting currently_taking');
+                        for (entries in currently_taking) {
+                            var entry = currently_taking[entries];
+                            Leaderboard.findOneAndUpdate({
+                                    test_id: req.params.testid,
+                                    candidate_name: entry.candidate_name,
+                                    email: entry.email,
+                                    candidate_id: entry.candidate_id
+                                }, {
+                                    candidate_total_score: entry.candidate_total_score
+                                }, {
+                                    new: true,
+                                    upsert: true
+                                }, function (err, data) {
+                                    if (err) console.error(err);
+                                    //else
+                                        //console.log('Saved Or Updated: ' + data);
+                                }
+                            );
+                        }
+                    }
+
+
+//res.send(JSON.stringify(body, null, 3));
+                }
+            }
+        });
+        res.redirect('/admin/hackerearth');
+    });
+
+    app.get('/leaderboard', function (req, res) {
+        var ranks = {};
+        Leaderboard.find({}, function (err, data) {
+            if (err) console.error(err);
+            else {
+                if (data && data.length > 0) {
+                    for (index in data) {
+                        if (data[index].candidate_name in ranks) {
+                            ranks[data[index].candidate_name] += data[index].candidate_total_score;
+                        } else {
+                            ranks[data[index].candidate_name] = data[index].candidate_total_score;
+                        }
+
+                        if (index == data.length - 1) {
+                            var array = [];
+                            for (a in ranks) {
+                                array.push([a, ranks[a]]);
+                            }
+                            array.sort(function (a, b) {
+                                return a[1] - b[1]
+                            });
+                            array.reverse();
+                            ranks = {};
+                            for (i in array) {
+                                ranks[array[i][0]] = array[i][1];
+                            }
+                            res.render('pages/leaderboard', {ranks: ranks});
+                            //res.send(ranks);
+                        }
+                    }
+                } else {
+                    res.render('pages/leaderboard', {ranks: ''});
+                }
+
+            }
+        })
+    })
 };

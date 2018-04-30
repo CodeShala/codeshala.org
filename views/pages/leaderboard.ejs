@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Codeshala Leaderboard | Codeshala | Get Better At Programing By Joining The Best programing courses in Delhi
+        NCR</title>
+    <% include ../partials/header %>
+    <% include ../partials/metadata %>
+
+</head>
+<body>
+<% include ../partials/nav %>
+<br/><br/>
+<div class="container" id="courses-registration-section">
+    <div class="row mx-auto">
+        <div class="card col-lg-11 codeshala-course-registration-card text-left">
+            <h3>Codeshala Leaderboard<span class="float-right"><a href="https://www.hackerearth.com" target="_blank"><img src="https://hackerearth.global.ssl.fastly.net/static/hackerearth/images/badge/HE_badge_on_light.png" alt="HackerEarth badge"></a></span></h3>
+            <small>The scores have been calculated from contests conducted by codeshala on hackerearth platform and are not synchronized realtime.</small><br/>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Rank</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Score</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% i=1; for(index in ranks){ %>
+                    <tr>
+                        <th scope="row"><%= i++ %></th>
+                        <td><%= index %></td>
+                        <td><%= ranks[index] %></td>
+                    </tr>
+                    <% } %>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>
+<button class="expanded large button js-button" disabled style="display:none">Enable Push Notifications</button>
+<pre class="js-subscription" style="display:none"></pre>
+</body>
+
+<% include ../partials/footer-scripts %>
+<script src="/assets/js/registration.min.js"></script>
+<script src="/client.js"></script>
+</html>

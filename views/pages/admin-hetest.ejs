@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Hackerearth Test | Admin | Codeshala | Get Better At Programing By Joining The Best programing courses in
+        Delhi NCR</title>
+    <% include ../partials/header %>
+    <% include ../partials/metadata %>
+</head>
+<body>
+<% include ../partials/nav %>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3">
+            <% include ../partials/admin-menu %>
+        </div>
+        <div class="col-lg-9">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/admin">Admin Home</a></li>
+                    <li class="breadcrumb-item"><a href="/admin/hackerearth">Add HE Test</a></li>
+                </ol>
+            </nav>
+            <br/>
+            <div class="card">
+                <div class="card-header">
+                    Add a Hackerearth Test
+                </div>
+                <div class="card-body">
+                    <% if (!response) { %>
+                    <% } else { %>
+                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                        <p><%= response %></p>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <% } %>
+                    <form method="post" action="/admin/hackerearth">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Test ID</label>
+                            <input type="text" name="testid" class="form-control" id="formGroupExampleInput"
+                                   placeholder="e.g. 385688" minlength="6" maxlength="6" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput2">Test Name</label>
+                            <input type="text" name="name" class="form-control" id="formGroupExampleInput2"
+                                   placeholder="e.g. <CODESHALA> DA-1-0118 Searching Public" required>
+                        </div>
+
+                        <input type="submit" class="btn btn-primary" value="Save">
+                    </form><br/><br/>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col">TEST ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Sync</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <% for(index in contests){ %>
+                            <tr>
+                                <td><%= contests[index].testid %></td>
+                                <td><%= contests[index].name %></td>
+                                <td><%= count[contests[index].testid] %></td>
+                            </tr>
+                            <% } %>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>
+</body>
+
+<% include ../partials/footer-scripts %>
+
+</html>
