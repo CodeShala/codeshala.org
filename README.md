@@ -35,6 +35,8 @@ We are community of programmers. Our community is lead by professionals who have
 | ADMIN_USERNAME | Username for admin access routes |
 | ADMIN_PASSWORD | Password for admin access routes |
 | ACCOUNTKIT_SECRET | [Account Kit](https://accountkit.com/) App Secret Key |
+| HACKEREARTH_RECRUITER_CLIENTID | [Hackerearth](https://www.hackerearth.com/) Recruiter API Client ID Credential|
+| HACKEREARTH_RECRUITER_SECRET | [Hackerearth](https://www.hackerearth.com/) Recruiter API Secret Key Credential |
 
 
 ### Hosting Server
