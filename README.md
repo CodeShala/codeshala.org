@@ -61,6 +61,10 @@ All the required configuration are available in the .env file
 ### Report Bugs / Suggest new features
 To report bug or suggest a new feature, raise an issue at [Issues](https://github.com/CodeShala/codeshala.org/issues)
 
+### Telegram Group
+Want to know what we are planning? or want a quick response from us?
+
+Join our telegram group [(Link)](https://t.me/joinchat/DcctBhG8A1pP4y1O11gK6w) 
 ### Contributors
 
 | Name |
