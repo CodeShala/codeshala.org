@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Codeshala | Get Better At Programing By Joining The Best programing courses in Delhi NCR</title>
+    <title>CODESHALA - GET BETTER AT PROGRAMING</title>
     <% include ../partials/header %>
     <% include ../partials/metadata %>
 </head>
@@ -10,11 +10,11 @@
 <div class="container text-center codeshala-heading" id="about-section">
     <h1><span style="color:#fd8900">CODE</span><span style="color:#0289fe">SHALA</span><br/>GET BETTER AT PROGRAMING
     </h1>
-    <h2 class="d-none d-lg-block d-xl-block">
+    <p class="d-none d-lg-block d-xl-block">
         We are community of programmers. Our community is lead by professionals who have broad experience in competitve
         programming and software development. Our community mentors are working at top companies and providing
         mentorship to candidates across different colleges. We provide learning courses to make you a better programmer.
-    </h2>
+    </p>
     <span class="text-center codeshala-theme codeshala-course-card-btn">
 			<a href="/tools/course-chooser" data-toggle="modal" data-target="#CourseChooserModal">
 				<small>Not able to decide which course to join?</small>
@@ -29,11 +29,12 @@
             <div class="codeshala-course-thumbnail"
                  style="background-image:url(https://i.pinimg.com/originals/82/43/cc/8243ccc3bf3e4df8db3bfd3a494a5895.jpg);background-size:cover;background-repeat: no-repeat;"></div>
             <h2><a href="">Codeshala For Kids</a></h2>
-            <h2>Coming Soon<br/>
+            <p>Coming Soon<br/>
 
-            </h2><br/><br/>
+            </p><br/><br/>
             <p>3 - 4 Weeks<br/>
-            We believe anybody can CODE. To diversify our courses, We are execited to inspire the young generation and make them know how to code. </p>
+                We believe anybody can CODE. To diversify our courses, We are execited to inspire the young generation
+                and make them know how to code. </p>
             <span class="text-center codeshala-theme codeshala-course-card-btn"><a
                         href="">Unveiling soon</a></span>
         </div>
@@ -68,7 +69,7 @@
 </div>
 <div class="container text-center mx-auto" id="clients">
     <h3 class=" text-dark text-center font-weight-bold">
-        Our Clients
+        Our Happy Clients
     </h3>
     <div class="row mx-auto" style="position:relative">
         <div class="card col-lg-3 codeshala-projects-card">
@@ -117,7 +118,7 @@
         <div class="card col-lg-3 codeshala-projects-card">
             <div class="codeshala-projects-thumbnail"
                  style="background-image:url(/assets/images/projects/doodle-pen.png)"></div>
-            <h2 class="codeshala-projects-title">Doodle Pen</h2>
+            <p class="codeshala-projects-title">Doodle Pen</p>
             <p class="codeshala-projects-description">A code editor IDE for Web developers. Supports HTML, CSS And
                 JavaScript</p>
             <span class="text-center codeshala-theme codeshala-course-card-btn"><a
@@ -126,7 +127,7 @@
         <div class="card col-lg-3 codeshala-projects-card">
             <div class="codeshala-projects-thumbnail"
                  style="background-image:url(/assets/images/projects/dock_url.png)"></div>
-            <h2 class="codeshala-projects-title">Dock URL</h2>
+            <p class="codeshala-projects-title">Dock URL</p>
             <p class="codeshala-projects-description">A short URL Website</p>
             <span class="text-center codeshala-theme codeshala-course-card-btn"><a href="https://dockurl.herokuapp.com">View Demo  <i
                             class="fa fa-arrow-right"></i></a></span>
@@ -144,11 +145,11 @@
         <div class="card col-lg-12 codeshala-feedbacks-card">
             <div class="row">
                 <div class="col-lg-2">
-                    <img src="/assets/images/feedbacks/sample.jpg" height="150px" width="150px">
+                    <img src="/assets/images/feedbacks/sample.jpg" alt="feedback-thumbnail" height="150px" width="150px">
                 </div>
                 <div class="col-lg-10">
-                    <h2 class="codeshala-feedbacks-title"><%= feedbacks[index].first_name %>
-                        &nbsp;<%= feedbacks[index].last_name %> </h2>
+                    <p class="codeshala-feedbacks-title"><%= feedbacks[index].first_name %>
+                        &nbsp;<%= feedbacks[index].last_name %> </p>
                     <p class="codeshala-feedbacks-description">
                         <% if(feedbacks[index].intern_at){ %>
                         Intern at <%= feedbacks[index].intern_at %>
@@ -167,7 +168,7 @@
 <div class="container-fluid codeshala-placements" id="placements">
     <div class="container">
         <h3 class="text-light text-center font-weight-bold container">
-            Placements
+            Codeshala Students Are Placed At
         </h3>
         <div class="row mx-auto">
             <div class="col-lg-3 mx-auto">
