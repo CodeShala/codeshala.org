@@ -4,8 +4,6 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
-//MODULE: Handles all Google Analytics Integration
-var ga_init = require('./utils/ga-init.js')(app);
 //MODULE: Handles all express bases routes
 var routes = require('./routes')(app);
 //MODULE: Handles all mongoDB Requests
