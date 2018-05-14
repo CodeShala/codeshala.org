@@ -447,7 +447,7 @@
                             log.disableAll();
                             break;
                         default:
-                            log.error('[WDS] Unknown clientLogLevel \'' + level + '\'');
+                            //log.error('[WDS] Unknown clientLogLevel \'' + level + '\'');
                     }
                 },
                 overlay: function overlay(value) {
@@ -482,7 +482,7 @@
                     self.location.reload();
                 },
                 warnings: function warnings(_warnings) {
-                    log.warn('[WDS] Warnings while compiling.');
+                    //log.warn('[WDS] Warnings while compiling.');
                     var strippedWarnings = _warnings.map(function (warning) {
                         return stripAnsi(warning);
                     });
@@ -496,22 +496,22 @@
                     reloadApp();
                 },
                 errors: function errors(_errors) {
-                    log.error('[WDS] Errors while compiling. Reload prevented.');
+                    //log.error('[WDS] Errors while compiling. Reload prevented.');
                     var strippedErrors = _errors.map(function (error) {
                         return stripAnsi(error);
                     });
                     sendMsg('Errors', strippedErrors);
                     for (var i = 0; i < strippedErrors.length; i++) {
-                        log.error(strippedErrors[i]);
+                        //log.error(strippedErrors[i]);
                     }
                     if (useErrorOverlay) overlay.showMessage(_errors);
                     initial = false;
                 },
                 error: function error(_error) {
-                    log.error(_error);
+                    //log.error(_error);
                 },
                 close: function close() {
-                    log.error('[WDS] Disconnected!');
+                    //log.error('[WDS] Disconnected!');
                     sendMsg('Close');
                 }
             };
@@ -843,7 +843,7 @@
                 // `navigator.serviceWorker.register()` is effectively a no-op during subsequent visits.
                 navigator.serviceWorker.register('/service-worker.js').then(function (registration) {
                     initializeState();
-                    console.log('ServiceWorker registration successful.', registration);
+                    //console.log('ServiceWorker registration successful.', registration);
                 }).catch(function (error) {
                     console.error('ServiceWorker registration failed.', error);
                 });

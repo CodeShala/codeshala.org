@@ -16,10 +16,16 @@
         mentorship to candidates across different colleges. We provide learning courses to make you a better programmer.
     </p>
     <span class="text-center codeshala-theme codeshala-course-card-btn">
-			<a href="/tools/course-chooser" data-toggle="modal" data-target="#CourseChooserModal">
+		<span id="btnCourseChooser" style="display: block;" >
+        <a href="/tools/course-chooser" data-toggle="modal" data-target="#CourseChooserModal">
 				<small>Not able to decide which course to join?</small>
-				<br/>Try our course chooser  <i class="fa fa-arrow-right"></i>
-			</a>
+				<br/>Try our course chooser
+        </a>
+        </span>
+        <br/>
+        <span id="btnAdd" style="display:none;">Enjoy a better experience on this platform
+        <br/>Click here and Add Codeshala To Your Homescreen
+        </span>
 		</span>
 </div>
 <hr>
@@ -145,7 +151,8 @@
         <div class="card col-lg-12 codeshala-feedbacks-card">
             <div class="row">
                 <div class="col-lg-2">
-                    <img src="/assets/images/feedbacks/sample.jpg" alt="feedback-thumbnail" height="150px" width="150px">
+                    <img src="/assets/images/feedbacks/sample.jpg" alt="feedback-thumbnail" height="150px"
+                         width="150px">
                 </div>
                 <div class="col-lg-10">
                     <p class="codeshala-feedbacks-title"><%= feedbacks[index].first_name %>
