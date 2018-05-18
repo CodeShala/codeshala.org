@@ -400,6 +400,8 @@ module.exports = function (app) {
                     if (err) console.error(err);
                     res.send('Push Registered');
                 });
+            }else{
+                res.send('Push Was Already Registered');
             }
         });
 

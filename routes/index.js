@@ -129,7 +129,7 @@ module.exports = function (app) {
             console.log('Language Not Supported')
         }
         //res.send("OK");
-    })
+    });
 
     app.get('/login',
         function (req, res) {
@@ -137,8 +137,9 @@ module.exports = function (app) {
         });
 
     app.post('/login',
-        passport.authenticate('local', {failureRedirect: '/login'}),
+        passport.authenticate('local', {failureRedirect: '/'}),
         function (req, res) {
+        //res.send('okok');
             res.redirect('/admin');
         });
 
