@@ -8,6 +8,7 @@ var app = express();
 var routes = require('./routes')(app);
 //MODULE: Handles all mongoDB Requests
 var db = require('./db')(app);
+var blog = require('./blog')(app);
 
 //Process application/x-www-form-urlencoded & application/json
 app.use(bodyParser.urlencoded({extended: false}));

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Codeshala Blog</title>
+    <% include ../../partials/header %>
+    <% include ../../partials/metadata %>
+    <!-- HTTPS required. HTTP will give a 403 forbidden response -->
+    <script src="https://sdk.accountkit.com/en_US/sdk.js"></script>
+
+    <script type="text/javascript">
+        // initialize Account Kit with CSRF protection
+        AccountKit_OnInteractive = function () {
+            AccountKit.init(
+                {
+                    appId: "348992692256013",
+                    state: "poiuycgh",
+                    version: "v1.1",
+                    fbAppEventsEnabled: true,
+                    redirect: "http://codeshala.org/success",
+                    debug: "true"
+                }
+            );
+        };
+
+
+        // phone form submission handler
+        function smsLogin() {
+            var countryCode = document.getElementById("country_code").value;
+            var phoneNumber = document.getElementById("phone_number").value;
+            AccountKit.login(
+                'PHONE',
+                {countryCode: countryCode, phoneNumber: phoneNumber}, // will use default values if not specified
+                loginCallback
+            );
+        }
+
+
+        // email form submission handler
+        function emailLogin() {
+            var emailAddress = document.getElementById("email").value;
+            AccountKit.login(
+                'EMAIL',
+                {emailAddress: emailAddress},
+                loginCallback
+            );
+        }
+
+        // login callback
+        function loginCallback(response) {
+            if (response.status === "PARTIALLY_AUTHENTICATED") {
+                //var code = response.code;
+                //var csrf = response.state;
+                //console.log(code);
+                //console.log(csrf);
+            }
+            else if (response.status === "NOT_AUTHENTICATED") {
+                console.log("NA");
+            }
+            else if (response.status === "BAD_PARAMS") {
+                // handle bad parameters
+                console.log("BP");
+            }
+        }
+    </script>
+</head>
+<body>
+<% include ../../partials/nav %>
+<div class="container-fluid codeshala-banner">
+    <div class="container text-center codeshala-course-heading">
+        <h1>Codeshala Blog</h1>
+        <p>Our experiences with truth</p>
+        <br/>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row mx-auto">
+        <% if(!posts.length){%>
+            Hold on! We are bringing some awesome blog posts for you soon
+        <%}%>
+        <% for(index in posts){ %>
+        <div class="col-lg-3 col-md-0 col-sm-0 col-xs-0">   </div>
+        <div class="card col-lg-6" style="padding:10px;margin:10px;">
+            <strong><h4><%= posts[index].title %></h4></strong>
+            <em>By <%= posts[index].author %></em>
+            <small><%= posts[index].views %> Views</small>
+            <p class="text-right"><a href=https://codeshala.org/blog/<%= posts[index].slug %>>Read more</a></p>
+        </div>
+        <% } %>
+    </div>
+</div>
+
+<% include ../../partials/footer %>
+<button class="expanded large button js-button" disabled style="display:none">Enable Push Notifications</button>
+<pre class="js-subscription" style="display:none"></pre>
+</body>
+
+<% include ../../partials/footer-scripts %>
+<script src="/client.js"></script>
+</html>
