@@ -128,13 +128,17 @@ module.exports = function (app) {
         Course.findOne({'alias': req.params.alias}, function (err, c_data) {
             if (err)
                 console.error(err);
-            else {
+            else if(c_data==null){
+                res.send('This course does not exist');
+            }else {
+                console.log("-->"+c_data);
                 Batch.find({course_alias: req.params.alias, visibility: 'public'}, function (err, b_data) {
                     if (err) console.error(err);
                     else {
                         console.log(b_data);
                         Feedback.find({}, function (err, f_data) {
                             if (err) console.error(err);
+                            //console.log("--->"+c_data.name);
                             res.render('pages/course', {course: c_data, batch: b_data, feedbacks: f_data});
                         })
                     }
@@ -163,7 +167,8 @@ module.exports = function (app) {
         });
     });
 
-    app.post('/course/register', function (req, res) {
+
+    app.post('/courseRegister', function (req, res) {
         var newRegistration = new Registration({
             phoneno: req.body.phoneno,
             batch: req.body.batch,
