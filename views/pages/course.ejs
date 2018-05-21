@@ -212,13 +212,14 @@
                         <input type="date" placeholder="Your DOB" id="dob" name="dob" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label>Enter Your Colleges Name <span id="reqd-fields">*</span></label>
+                        <label>Enter Your College/School Name <span id="reqd-fields">*</span></label>
                         <input type="text" placeholder="Your college" id="college" name="college" class="form-control"
                                required>
                     </div>
                     <div class="form-group">
-                        <label>Select Your Branch <span id="reqd-fields">*</span></label>
+                        <label>Select Your Branch(For College Students Only) </label>
                         <select name="branch" id="branch" class="custom-select custom-select-lg mb-3">
+                            <option value="NA">----</option>
                             <option value="CE">Computer Engineering</option>
                             <option value="IT">Information Technology</option>
                             <option value="ECE">Electronics &amp; Communication</option>
@@ -229,9 +230,9 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Select Your Year Of Passing <span id="reqd-fields">*</span></label>
-                        <select name="year_passing" id="name_passing" class="custom-select custom-select-lg mb-3"
-                                required>
+                        <label>Year of Graduation(For College Student Only)
+                        <select name="year_passing" id="name_passing" class="custom-select custom-select-lg mb-3">
+                            <option value="NA">----</option>
                             <option value="2017">2017</option>
                             <option value="2018">2018</option>
                             <option value="2019">2019</option>
