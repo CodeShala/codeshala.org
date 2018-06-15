@@ -4,6 +4,14 @@
     <title>CODESHALA - GET BETTER AT PROGRAMING</title>
     <% include ../partials/header %>
     <% include ../partials/metadata %>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
+    <style>
+        .slick-next:before, .slick-prev:before{
+            color: #191919;
+        }
+    </style>
 </head>
 <body>
 <% include ../partials/nav %>
@@ -85,9 +93,9 @@
         <div class="card col-lg-3 codeshala-projects-card">
             <a href="http://www.aadyant.com" target="_blank" rel="noopener">
                 <div class="codeshala-projects-thumbnail"
-                    style="background-image:url(/assets/images/clients/aadyant_school.png);background-size: contain;background-repeat: no-repeat;"></div>
-                    <h2 class="codeshala-projects-title">Aadyant School<br/></h2>
-                    <span class="text-center codeshala-theme codeshala-course-card-btn">Website</span>
+                     style="background-image:url(/assets/images/clients/aadyant_school.png);background-size: contain;background-repeat: no-repeat;"></div>
+                <h2 class="codeshala-projects-title">Aadyant School<br/></h2>
+                <span class="text-center codeshala-theme codeshala-course-card-btn">Website</span>
             </a>
         </div>
     </div>
@@ -137,34 +145,39 @@
             <div class="codeshala-arrow"><a href="/projects">View all projects <i class="fa fa-arrow-right"></i></a></div>-->
     </div>
 </div>
+<!-- Feedback Section -->
 <div class="container" id="feedbacks">
     <h3 class="text-dark text-center font-weight-bold">
         Course Feedbacks By Our Students
     </h3>
-    <div class="row">
-        <% for(index in feedbacks){ %>
-        <div class="card col-lg-12 codeshala-feedbacks-card">
-            <div class="row">
-                <div class="col-lg-2">
-                    <img src="/assets/favicon/favicon-96x96.png" data-src="/assets/images/feedbacks/sample.jpg" class="lazy" alt="feedback-thumbnail" height="150px"
-                         width="150px">
-                </div>
-                <div class="col-lg-10">
-                    <p class="codeshala-feedbacks-title"><%= feedbacks[index].first_name %>
-                        &nbsp;<%= feedbacks[index].last_name %> </p>
-                    <p class="codeshala-feedbacks-description">
-                        <% if(feedbacks[index].intern_at){ %>
-                        Intern at <%= feedbacks[index].intern_at %>
-                        <% } if(feedbacks[index].placed_at){ %>
-                        | Placed at <%= feedbacks[index].placed_at %>
-                        <% } %>
-                        <br/>
-                        <%= feedbacks[index].feedback %>
-                    </p>
+
+    <div class="row feedback-slick">
+
+            <% for(index in feedbacks){ %>
+            <div class="card col-lg-3 codeshala-feedbacks-card">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!--<img src="/assets/favicon/favicon-96x96.png" data-src="/assets/images/feedbacks/sample.jpg"
+                             class="lazy" alt="feedback-thumbnail" height="150px"
+                             width="150px">-->
+                    </div>
+                    <div class="col-lg-12">
+                        <p class="codeshala-feedbacks-title"><%= feedbacks[index].first_name %>
+                            &nbsp;<%= feedbacks[index].last_name %> </p>
+                        <p class="codeshala-feedbacks-description">
+                            <% if(feedbacks[index].intern_at){ %>
+                            Intern at <%= feedbacks[index].intern_at %>
+                            <% } if(feedbacks[index].placed_at){ %>
+                            | Placed at <%= feedbacks[index].placed_at %>
+                            <% } %>
+                            <br/>
+                            <%= feedbacks[index].feedback %>
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <% } %>
+            <% } %>
+
     </div>
 </div>
 <div class="container-fluid codeshala-placements" id="placements">
@@ -249,16 +262,38 @@
 
 <% include ../partials/footer-scripts %>
 <script src="/client.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.feedback-slick').slick({
+            arrow: true,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            dots: true,
+            infinite: true,
+            mobileFirst: true,
+            pauseOnFocus: false,
+            rows: 1,
+            slidesPerRow: 2,
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            swipe: true,
+            swipeToSlide: true
+        });
+    });
+
+</script>
 <script>
     var lazy = [];
-    function setLazy(){
+
+    function setLazy() {
         lazy = document.getElementsByClassName('lazy');
     }
 
-    function lazyLoad(){
-        for(var i=0; i<lazy.length; i++){
-            if(isInViewport(lazy[i])){
-                if (lazy[i].getAttribute('data-src')){
+    function lazyLoad() {
+        for (var i = 0; i < lazy.length; i++) {
+            if (isInViewport(lazy[i])) {
+                if (lazy[i].getAttribute('data-src')) {
                     lazy[i].src =
                         lazy[i].getAttribute('data-src');
 
@@ -271,11 +306,11 @@
         cleanLazy();
     }
 
-    function cleanLazy(){
+    function cleanLazy() {
         lazy =
             Array.prototype.filter.call(
                 lazy,
-                function(l){
+                function (l) {
                     return l.getAttribute('data-src');
                 }
             );
@@ -288,7 +323,8 @@
             window.attachEvent('on' + event, func)
         }
     }
-    function isInViewport(el){
+
+    function isInViewport(el) {
         var rect = el.getBoundingClientRect();
 
         return (
@@ -304,6 +340,7 @@
                 document.documentElement.clientWidth)
         );
     }
+
     registerListener('load', lazyLoad);
     registerListener('load', setLazy);
     registerListener('scroll', lazyLoad);

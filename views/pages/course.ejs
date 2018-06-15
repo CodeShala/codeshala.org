@@ -5,6 +5,14 @@
         NCR</title>
     <% include ../partials/header %>
     <% include ../partials/metadata %>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
+    <style>
+        .slick-next:before, .slick-prev:before{
+            color: #191919;
+        }
+    </style>
     <!-- HTTPS required. HTTP will give a 403 forbidden response -->
     <script src="https://sdk.accountkit.com/en_US/sdk.js"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -298,20 +306,25 @@
         </div>
     </div>
 </div>
+<!-- Feedback Section -->
 <div class="container" id="feedbacks">
-    <h3 class="text-dark text-left font-weight-bold">
+    <h3 class="text-dark text-center font-weight-bold">
         Course Feedbacks By Our Students
     </h3>
-    <div class="row">
+
+    <div class="row feedback-slick">
+
         <% for(index in feedbacks){ %>
-        <div class="card col-lg-12 codeshala-feedbacks-card">
+        <div class="card col-lg-3 codeshala-feedbacks-card">
             <div class="row">
-                <div class="col-lg-2">
-                    <img src="/assets/images/feedbacks/sample.jpg" height="150px" width="150px">
+                <div class="col-lg-12">
+                    <!--<img src="/assets/favicon/favicon-96x96.png" data-src="/assets/images/feedbacks/sample.jpg"
+                         class="lazy" alt="feedback-thumbnail" height="150px"
+                         width="150px">-->
                 </div>
-                <div class="col-lg-10">
-                    <h2 class="codeshala-feedbacks-title"><%= feedbacks[index].first_name %>
-                        &nbsp;<%= feedbacks[index].last_name %> </h2>
+                <div class="col-lg-12">
+                    <p class="codeshala-feedbacks-title"><%= feedbacks[index].first_name %>
+                        &nbsp;<%= feedbacks[index].last_name %> </p>
                     <p class="codeshala-feedbacks-description">
                         <% if(feedbacks[index].intern_at){ %>
                         Intern at <%= feedbacks[index].intern_at %>
@@ -325,6 +338,7 @@
             </div>
         </div>
         <% } %>
+
     </div>
 </div>
 <div class="container-fluid codeshala-placements" id="placements">
@@ -349,4 +363,25 @@
 <% include ../partials/footer-scripts %>
 <script src="/assets/js/registration.min.js"></script>
 <script src="/client.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.feedback-slick').slick({
+            arrow: true,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            dots: true,
+            infinite: true,
+            mobileFirst: true,
+            pauseOnFocus: false,
+            rows: 1,
+            slidesPerRow: 2,
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            swipe: true,
+            swipeToSlide: true
+        });
+    });
+
+</script>
 </html>
