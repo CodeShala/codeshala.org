@@ -7,57 +7,62 @@
 
     <url>
         <loc>https://codeshala.org</loc>
-        <lastmod>2018-05-07T14:45:10+00:00</lastmod>
+        <lastmod>2018-06-15T12:00:00+05:30</lastmod>
         <priority>1.00</priority>
     </url>
     <url>
+        <loc>https://codeshala.org/course/codeshala-for-kids</loc>
+        <lastmod>2018-06-15T12:00:00+05:30</lastmod>
+        <priority>0.90</priority>
+    </url>
+    <url>
         <loc>https://codeshala.org/course/full-stack-web-development-using-node-js</loc>
-        <lastmod>2018-05-07T14:45:10+00:00</lastmod>
+        <lastmod>2018-06-15T12:00:00+05:30</lastmod>
         <priority>0.90</priority>
     </url>
     <url>
         <loc>https://codeshala.org/course/coding-interview-prepration</loc>
-        <lastmod>2018-05-07T14:45:10+00:00</lastmod>
+        <lastmod>2018-06-15T12:00:00+05:30</lastmod>
         <priority>0.90</priority>
     </url>
     <url>
         <loc>https://codeshala.org/course/introduction-to-programing-using-cpp</loc>
-        <lastmod>2018-05-07T14:45:10+00:00</lastmod>
+        <lastmod>2018-06-15T12:00:00+05:30</lastmod>
         <priority>0.90</priority>
     </url>
     <url>
         <loc>https://codeshala.org/course/data-structures-algorithms-1</loc>
-        <lastmod>2018-05-07T14:45:10+00:00</lastmod>
+        <lastmod>2018-06-15T12:00:00+05:30</lastmod>
         <priority>0.90</priority>
     </url>
     <url>
         <loc>https://codeshala.org/course/data-structures-algorithms-2</loc>
-        <lastmod>2018-05-07T14:45:10+00:00</lastmod>
+        <lastmod>2018-06-15T12:00:00+05:30</lastmod>
+        <priority>0.90</priority>
+    </url>
+    <url>
+        <loc>https://codeshala.org/blog</loc>
+        <lastmod>2018-06-15T12:00:00+05:30</lastmod>
         <priority>0.90</priority>
     </url>
     <url>
         <loc>https://codeshala.org/ide</loc>
-        <lastmod>2018-05-07T14:45:10+00:00</lastmod>
+        <lastmod>2018-06-15T12:00:00+05:30</lastmod>
         <priority>0.90</priority>
     </url>
     <url>
         <loc>https://codeshala.org/assignments</loc>
-        <lastmod>2018-05-07T14:45:10+00:00</lastmod>
+        <lastmod>2018-06-15T12:00:00+05:30</lastmod>
         <priority>0.80</priority>
     </url>
     <url>
         <loc>https://codeshala.org/contests</loc>
-        <lastmod>2018-05-07T14:45:10+00:00</lastmod>
+        <lastmod>2018-06-15T12:00:00+05:30</lastmod>
         <priority>0.80</priority>
     </url>
     <url>
-        <loc>https://codeshala.org/tools/course-chooser</loc>
-        <lastmod>2018-05-07T14:45:10+00:00</lastmod>
-        <priority>0.70</priority>
-    </url>
-    <url>
         <loc>https://codeshala.org/privacy</loc>
-        <lastmod>2018-05-07T14:45:10+00:00</lastmod>
+        <lastmod>2018-06-15T12:00:00+05:30</lastmod>
         <priority>0.70</priority>
     </url>
 </urlset>

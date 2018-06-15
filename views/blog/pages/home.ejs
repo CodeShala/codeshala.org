@@ -75,15 +75,16 @@
 
 <div class="container">
     <div class="row mx-auto">
-        <% if(!posts.length){%>
-            Hold on! We are bringing some awesome blog posts for you soon
-        <%}%>
+        <% if(!posts.length){ %>
+        Hold on! We are bringing some awesome blog posts for you soon
+        <% } %>
         <% for(index in posts){ %>
-        <div class="col-lg-3 col-md-0 col-sm-0 col-xs-0">   </div>
+        <div class="col-lg-3 col-md-0 col-sm-0 col-xs-0"></div>
         <div class="card col-lg-6" style="padding:10px;margin:10px;">
-            <strong><h4><%= posts[index].title %></h4></strong>
-            <em>By <%= posts[index].author %></em>
-            <small><%= posts[index].views %> Views</small>
+            <a href=https://codeshala.org/blog/<%= posts[index].slug %>><strong><h4><%= posts[index].title %></h4>
+                </strong></a>
+            By <%= posts[index].author %>
+            <small><%= posts[index].views %> Views</small><br/>
             <p class="text-right"><a href=https://codeshala.org/blog/<%= posts[index].slug %>>Read more</a></p>
         </div>
         <% } %>
