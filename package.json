@@ -36,7 +36,12 @@
     "passport": "0.4.0",
     "passport-local": "1.0.0",
     "request": "2.85.0",
-    "web-push": "3.3.0"
+    "spdy": "3.4.7",
+    "web-push": "3.3.0",
+    "nodemailer": "^4.6.7",
+    "connect-flash": "^0.1.1",
+    "express-validator": "^5.2.0",
+    "express-session": "^1.15.6"
   },
   "devDependencies": {
     "csslint": "1.0.5",

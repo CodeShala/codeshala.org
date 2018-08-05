@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
     <style>
-        .slick-next:before, .slick-prev:before{
+        .slick-next:before, .slick-prev:before {
             color: #191919;
         }
     </style>
@@ -25,9 +25,13 @@
     </p>
     <span class="text-center codeshala-theme codeshala-course-card-btn">
 		<span id="btnCourseChooser" style="display: block;">
-        <a href="/tools/course-chooser" data-toggle="modal" data-target="#CourseChooserModal">
+        <!--<a href="/tools/course-chooser" data-toggle="modal" data-target="#CourseChooserModal">
 				<small>Not able to decide which course to join?</small>
 				<br/>Try our course chooser
+        </a>-->
+            <a href="/campus-ambassador" data-toggle="modal" data-target="#CourseChooserModal">
+				Become Codeshala's Campus Ambassador
+				<br/>Apply Now
         </a>
         </span>
         <br/>
@@ -153,30 +157,30 @@
 
     <div class="row feedback-slick">
 
-            <% for(index in feedbacks){ %>
-            <div class="card col-lg-3 codeshala-feedbacks-card">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <!--<img src="/assets/favicon/favicon-96x96.png" data-src="/assets/images/feedbacks/sample.jpg"
-                             class="lazy" alt="feedback-thumbnail" height="150px"
-                             width="150px">-->
-                    </div>
-                    <div class="col-lg-12">
-                        <p class="codeshala-feedbacks-title"><%= feedbacks[index].first_name %>
-                            &nbsp;<%= feedbacks[index].last_name %> </p>
-                        <p class="codeshala-feedbacks-description">
-                            <% if(feedbacks[index].intern_at){ %>
-                            Intern at <%= feedbacks[index].intern_at %>
-                            <% } if(feedbacks[index].placed_at){ %>
-                            | Placed at <%= feedbacks[index].placed_at %>
-                            <% } %>
-                            <br/>
-                            <%= feedbacks[index].feedback %>
-                        </p>
-                    </div>
+        <% for(index in feedbacks){ %>
+        <div class="card col-lg-3 codeshala-feedbacks-card">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!--<img src="/assets/favicon/favicon-96x96.png" data-src="/assets/images/feedbacks/sample.jpg"
+                         class="lazy" alt="feedback-thumbnail" height="150px"
+                         width="150px">-->
+                </div>
+                <div class="col-lg-12">
+                    <p class="codeshala-feedbacks-title"><%= feedbacks[index].first_name %>
+                        &nbsp;<%= feedbacks[index].last_name %> </p>
+                    <p class="codeshala-feedbacks-description">
+                        <% if(feedbacks[index].intern_at){ %>
+                        Intern at <%= feedbacks[index].intern_at %>
+                        <% } if(feedbacks[index].placed_at){ %>
+                        | Placed at <%= feedbacks[index].placed_at %>
+                        <% } %>
+                        <br/>
+                        <%= feedbacks[index].feedback %>
+                    </p>
                 </div>
             </div>
-            <% } %>
+        </div>
+        <% } %>
 
     </div>
 </div>
