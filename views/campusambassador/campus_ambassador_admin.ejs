@@ -29,8 +29,10 @@
                     // console.log(res);
                 }
             });
+             $("#"+id1+"1").hide();
+            $("#"+id1+"2").hide();
             console.log("Ajax complete");
-            location.reload(true);
+            
         }
     </script>
     <style>
@@ -170,11 +172,11 @@
                 </ul>
                 <% if (applicant.status == "Waiting") { %>
                 <div class="row" style="margin-top: 10px;">
-                    <button type="button" class="btn btn-success" id="accept"
+                    <button type="button" class="btn btn-success" id="<%= applicant._id %>1"
                             onclick="request('1','<%= applicant._id %>','<%= applicant.email %>','<%= applicant.name %>');"
                             style="margin-left: 75px;height: 40px;border:none;">ACCEPT
                     </button>
-                    <button type="button" class="btn btn-danger" id="reject"
+                    <button type="button" class="btn btn-danger" id="<%= applicant._id %>2"
                             onclick="request('2','<%= applicant._id %>','<%= applicant.email %>','<%= applicant.name %>');"
                             style="margin-left: 10px;height: 40px;border:none;">REJECT
                     </button>

@@ -8,19 +8,19 @@ var mail_handler1 = ((ToSend, ToSendName) => {
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'princebatra2315@gmail.com',
-            pass: 'Gmail_Password'
+            user: process.env.MAILER_EMAIL,
+            pass: process.env.MAILER_PASSWORD
         }
     });
 
 //Add all emails in array where you want the alert of sending email to hired Campus Ambassador
     var maillist = [
         ToSend,
-        'princebatra2315@gmail.com',
+        'prince@codeshala.org',
     ];
     // setup email data with unicode symbols
     let mailOptions = {
-        from: '"CODESHALA" <princebatra2315@gmail.com>', // sender address
+        from: '"CODESHALA" <contact@codeshala.org>', // sender address
         to: maillist,// list of receivers
         subject: 'CodeShala Campus Ambassador Program', // Subject line
         text: 'Hello world?', // plain text body
