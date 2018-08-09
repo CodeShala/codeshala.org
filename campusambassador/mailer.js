@@ -25,7 +25,7 @@ var mail_handler = ((ToSend, ToSendName) => {
         to: maillist,// list of receivers
         subject: 'Campus Ambassador Program', // Subject line
         text: 'Hello world?', // plain text body
-        html: `<p>Hi, <b>${ToSendName}</b><br><p>Thank you for applying in the Campus Ambassador program at CODESHALA.We have received your application & are reviewing your details. It should not take us long and as soon as we are through, we will intimate you and schedule a short Telephonic meeting with you.</p><p>Looking forward to having you at CodeShala and some great work in the future.</p><p>Best Regards,</p><p>Prince Batra</p><p>Team CodeShala</p>` // html body
+        html: `<p>Hi, <b>${ToSendName}</b><br><p>Thank you for applying in the Campus Ambassador program at CodeShala.We have received your application & are reviewing your details. It should not take us long and as soon as we are through, we will intimate you and schedule a short Telephonic meeting with you.</p><p>Looking forward to having you at CodeShala and some great work in the future.</p><p>Best Regards,</p><p>Prince Batra</p><p>Team CODESHALA</p>` // html body
     };
 
     // send mail with defined transport object
