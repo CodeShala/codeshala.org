@@ -70,7 +70,6 @@ Join our telegram group [(Link)](https://t.me/joinchat/DcctBhG8A1pP4y1O11gK6w)
 | Name |
 | ------ |
 | [Paras Aggarwal](https://github.com/paras-aggarwal/) |
-
 | Name |
 | ------ |
 | [Prince Batra](https://github.com/princebatra2315) |
