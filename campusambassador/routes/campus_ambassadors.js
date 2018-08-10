@@ -88,7 +88,7 @@ module.exports = function (app) {
                 }
                 else {
                     mail_handler(campus_ambassador.email, campus_ambassador.name);
-                    a = [{msg: "Registered Successful"}]
+                    a = [{msg: "Registration Successful"}]
                     req.flash('RegisterMessage', a);
                     res.render('campusambassador/campus_ambassador', {message: req.flash('RegisterMessage')});
                 }
