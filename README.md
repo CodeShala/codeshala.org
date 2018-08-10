@@ -67,9 +67,6 @@ Want to know what we are planning? or want a quick response from us?
 Join our telegram group [(Link)](https://t.me/joinchat/DcctBhG8A1pP4y1O11gK6w) 
 ### Contributors
 
-| Name |
-| ------ |
-| [Paras Aggarwal](https://github.com/paras-aggarwal/) |
-| Name |
-| ------ |
-| [Prince Batra](https://github.com/princebatra2315) |
+[Paras Aggarwal](https://github.com/paras-aggarwal/)
+
+[Prince Batra](https://github.com/princebatra2315)
