@@ -22,9 +22,9 @@ var mail_handler1 = ((ToSend, ToSendName) => {
     let mailOptions = {
         from: '"CODESHALA" <contact@codeshala.org>', // sender address
         to: maillist,// list of receivers
-        subject: 'CodeShala Campus Ambassador Program', // Subject line
+        subject: 'Codeshala Campus Ambassador Program', // Subject line
         text: 'Hello world?', // plain text body
-        html: `<p>Hi, <b>${ToSendName}</b><br><p>On behalf of the entire company, I’d like to say that it brings me great pleasure to formally offer you the position for Campus Ambassador at CodeShala. A huge congratulations to you!.This offer is contingent upon the signing of a Non-Disclosure Agreement (attached). You must give acknowledgement of this offer letter. Please email it back to us no more than 7 days.</p><p>Best Regards,</p><p>Prince Batra</p><p>Team CODESHALA</p>` // html body
+        html: `<p>Hi, <b>${ToSendName}</b><br><p>On behalf of the entire company, I’d like to say that it brings me great pleasure to formally offer you the position for Campus Ambassador at Codeshala. A huge congratulations to you!.This offer is contingent upon the signing of a Non-Disclosure Agreement (attached). You must give acknowledgement of this offer letter. Please email it back to us no more than 7 days.</p><p>Best Regards,</p><p>Prince Batra</p><p>Team CODESHALA</p>` // html body
     };
 
     // send mail with defined transport object
