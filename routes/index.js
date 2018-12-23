@@ -41,6 +41,10 @@ module.exports = function (app) {
     app.use(passport.initialize());
     app.use(passport.session());
 
+    app.get('/editor', function (req,res) {
+        res.render('pages/editor');
+    })
+    
     app.get('/privacy', function (req, res) {
         res.render('pages/privacy-policy');
     })
