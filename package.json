@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "gulp",
     "serve": "node index",
-    "start": "node index.js"
+    "start": "node index.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -40,7 +42,8 @@
     "web-push": "3.3.0",
     "nodemailer": "^4.6.7",
     "connect-flash": "^0.1.1",
-    "express-validator": "^5.2.0"
+    "express-validator": "^5.2.0",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "csslint": "1.0.5",
@@ -49,5 +52,6 @@
     "gulp-imagemin": "4.1.0",
     "gulp-rename": "1.2.2",
     "gulp-uglify": "3.0.0"
-  }
+  },
+  "snyk": true
 }
